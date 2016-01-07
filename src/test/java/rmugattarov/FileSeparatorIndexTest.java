@@ -7,7 +7,7 @@ import java.io.File;
 /**
  * Created by rmugattarov on 05.01.16.
  */
-public class FileSeparatorIndex {
+public class FileSeparatorIndexTest {
     @Test
     public void should_find_separator_in_path() {
         System.out.printf("file separator : %s\n", File.separator);
