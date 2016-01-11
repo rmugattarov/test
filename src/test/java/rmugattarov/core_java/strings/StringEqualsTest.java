@@ -1,4 +1,4 @@
-package rmugattarov.core_java;
+package rmugattarov.core_java.strings;
 
 import org.junit.Assert;
 import org.junit.Test;
