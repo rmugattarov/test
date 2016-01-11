@@ -1,4 +1,4 @@
-package rmugattarov;
+package rmugattarov.core_java;
 
 import org.junit.Test;
 
