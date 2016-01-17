@@ -21,5 +21,6 @@ public class MockitoTest {
         String answer = dummyObject.returnString();
         System.out.printf("Mocked dummy service returned : %s", answer);
         Assert.assertEquals("Hello, I am mocked!", answer);
+        Mockito.verify(dummyObject).returnString();
     }
 }
