@@ -8,7 +8,7 @@ import org.junit.Test;
 public class SkipWasUsersTest {
     @Test
     public void test_regex() {
-        String regex = "(?i)(server:.*)|(/UNAUTHENTICATED)";
+        String regex = "(?i)(server:.*)|(/UNAUTHENTICATED)|(defaultwimfilebasedrealm.*)";
         String s1 = "server:qwerty";
         System.out.printf("SERver:qwerty matches %s : %b\n", regex, s1.matches(regex));
         String s2 = "/UNAUTHENTICATED";
