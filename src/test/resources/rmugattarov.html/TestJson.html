@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function parseString() {
+            document.getElementById("rowCount").innerHTML = JSON.parse("{\"rowCount\":13000}").rowCount;
+        }
+    </script>
+</head>
+<body onload="parseString()">
+<div>
+    <p>rowCount : <span id="rowCount"></span></p>
+</div>
+</body>
+</html>
