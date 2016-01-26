@@ -2,9 +2,7 @@ package rmugattarov.jdbc;
 
 import org.junit.Test;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Properties;
 
 /**
@@ -24,9 +22,14 @@ public class CallStoredProcedure {
         connProperties.put("password", "o9p0[-]=");
         try {
             connection = DriverManager.getConnection("jdbc:" + dbms + "://" + host + ":" + port + "/" + db, connProperties);
+            CallableStatement callableStatement = connection.prepareCall("call count_sec_audit(?)");
+            callableStatement.registerOutParameter(1, Types.INTEGER);
+            ResultSet resultSet = callableStatement.executeQuery();
+            while (resultSet.next()) {
+                System.out.printf("Security audit count : %d", resultSet.getInt("count"));
+            }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        System.out.println(connection);
     }
 }
