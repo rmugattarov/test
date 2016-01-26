@@ -45,7 +45,12 @@
             <version>20151123</version>
             <scope>test</scope>
         </dependency>
-
+        <dependency>
+            <groupId>com.ibm.db2.driver</groupId>
+            <artifactId>db2jcc4</artifactId>
+            <version>4.15.82</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
