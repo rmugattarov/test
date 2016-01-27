@@ -27,10 +27,10 @@ public class NoElementWrapperTest {
 
     String xml =
             "<rootElement>" +
-                    "<elementList>" +
+//                    "<elementList>" +
                     "<element>1234</element>" +
                     "<element>qwer</element>" +
-                    "</elementList>" +
+//                    "</elementList>" +
                     "</rootElement>";
 
     @Test
