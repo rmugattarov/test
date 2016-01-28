@@ -25,10 +25,8 @@ public class CallStoredProcedure {
             connection = DriverManager.getConnection("jdbc:" + dbms + "://" + host + ":" + port + "/" + db, connProperties);
             stmt = connection.prepareCall("call count_sec_audit(?)");
             stmt.registerOutParameter(1, Types.INTEGER);
-            ResultSet resultSet = stmt.executeQuery();
-            while (resultSet.next()) {
-                System.out.printf("Security audit count : %d", resultSet.getInt("count"));
-            }
+            stmt.execute();
+            System.out.printf("Security audit count : %d", stmt.getInt(1));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
