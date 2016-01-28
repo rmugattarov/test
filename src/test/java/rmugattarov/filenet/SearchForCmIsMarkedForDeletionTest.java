@@ -24,13 +24,21 @@ public class SearchForCmIsMarkedForDeletionTest {
             Domain domain = Factory.Domain.fetchInstance(connection, null, null);
             ObjectStore objectStore = Factory.ObjectStore.fetchInstance(domain, "OST", null);
             SearchScope searchScope = new SearchScope(objectStore);
-            SearchSQL searchSQL = new SearchSQL("SELECT TOP 10 CmIsMarkedForDeletion FROM Document");
-            IndependentObjectSet objectSet = searchScope.fetchObjects(searchSQL, 10, null, false);
+            SearchSQL searchSQL = new SearchSQL("SELECT TOP 1000 CmIsMarkedForDeletion FROM Document");
+            IndependentObjectSet objectSet = searchScope.fetchObjects(searchSQL, 1000, null, false);
             Iterator iterator = objectSet.iterator();
+            int isMarked = 0;
+            int isNotMarked = 0;
             while (iterator.hasNext()) {
                 Document document = (Document) iterator.next();
-                System.out.println(document.getProperties().getBooleanValue("CmIsMarkedForDeletion"));
+                Boolean cmIsMarkedForDeletion = document.getProperties().getBooleanValue("CmIsMarkedForDeletion");
+                if (cmIsMarkedForDeletion) {
+                    isMarked++;
+                } else {
+                    isNotMarked++;
+                }
             }
+            System.out.printf("isMarked : %d\nisNotMarked : %d\n", isMarked, isNotMarked);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
