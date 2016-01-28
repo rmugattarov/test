@@ -19,7 +19,7 @@ public class InsertIntoTestTable {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
             connection = DriverManager.getConnection("jdbc:derby:D:/derby-db");
             stmt = connection.createStatement();
-            stmt.execute("insert into test_table(comment) values('Hello! This is the first inserted row!')");
+            stmt.execute("insert into test_table(comment) values('second row')");
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {

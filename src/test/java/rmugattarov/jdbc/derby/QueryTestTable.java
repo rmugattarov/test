@@ -44,8 +44,8 @@ public class QueryTestTable {
                     String string = resultSet.getObject(i).toString();
                     System.out.printf("|%47s", string);
                 }
+                System.out.println("|\n");
             }
-            System.out.println("|");
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
