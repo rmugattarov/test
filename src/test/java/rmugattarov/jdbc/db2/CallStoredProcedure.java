@@ -1,4 +1,4 @@
-package rmugattarov.jdbc;
+package rmugattarov.jdbc.db2;
 
 import org.junit.Test;
 
