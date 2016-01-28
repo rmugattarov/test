@@ -10,16 +10,16 @@ import java.sql.Statement;
 /**
  * Created by rmugattarov on 28.01.2016.
  */
-public class CreateTestTable {
+public class InsertIntoTestTable {
     @Test
-    public void create_test_table() {
+    public void insert() {
         Connection connection = null;
         Statement stmt = null;
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
             connection = DriverManager.getConnection("jdbc:derby:D:/derby-db");
             stmt = connection.createStatement();
-            stmt.execute("CREATE TABLE test_table(id bigint generated always as identity, comment varchar(128))");
+            stmt.execute("insert into test_table(comment) values('Hello! This is the first inserted row!')");
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         } finally {
