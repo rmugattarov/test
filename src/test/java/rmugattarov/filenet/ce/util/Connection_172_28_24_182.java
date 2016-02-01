@@ -1,4 +1,4 @@
-package rmugattarov.filenet.util;
+package rmugattarov.filenet.ce.util;
 
 import com.filenet.api.core.Connection;
 import com.filenet.api.core.Factory;

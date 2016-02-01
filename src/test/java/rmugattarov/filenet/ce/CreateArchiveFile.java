@@ -1,4 +1,4 @@
-package rmugattarov.filenet;
+package rmugattarov.filenet.ce;
 
 import com.filenet.api.constants.PropertyNames;
 import com.filenet.api.constants.RefreshMode;
@@ -6,7 +6,7 @@ import com.filenet.api.core.*;
 import com.filenet.api.property.Properties;
 import com.filenet.api.util.UserContext;
 import org.junit.Test;
-import rmugattarov.filenet.util.Connection_172_28_24_182;
+import rmugattarov.filenet.ce.util.Connection_172_28_24_182;
 
 import javax.security.auth.Subject;
 import java.text.SimpleDateFormat;

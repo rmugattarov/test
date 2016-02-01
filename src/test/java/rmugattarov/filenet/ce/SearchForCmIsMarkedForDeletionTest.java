@@ -1,4 +1,4 @@
-package rmugattarov.filenet;
+package rmugattarov.filenet.ce;
 
 import com.filenet.api.collection.IndependentObjectSet;
 import com.filenet.api.core.*;
@@ -6,7 +6,7 @@ import com.filenet.api.query.SearchSQL;
 import com.filenet.api.query.SearchScope;
 import com.filenet.api.util.UserContext;
 import org.junit.Test;
-import rmugattarov.filenet.util.Connection_172_28_24_182;
+import rmugattarov.filenet.ce.util.Connection_172_28_24_182;
 
 import javax.security.auth.Subject;
 import java.util.Iterator;
