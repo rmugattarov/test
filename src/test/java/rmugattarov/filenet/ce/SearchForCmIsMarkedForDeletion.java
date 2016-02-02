@@ -14,7 +14,7 @@ import java.util.Iterator;
 /**
  * Created by rmugattarov on 28.01.2016.
  */
-public class SearchForCmIsMarkedForDeletionTest {
+public class SearchForCmIsMarkedForDeletion {
     @Test
     public void test() {
         Connection connection = new Connection_172_28_24_182().getConnection();
