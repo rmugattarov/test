@@ -24,7 +24,9 @@ public class SearchForLinkArchiveAnnotations {
             Domain domain = Factory.Domain.fetchInstance(connection, null, null);
             ObjectStore objectStore = Factory.ObjectStore.fetchInstance(domain, "OST", null);
             SearchScope searchScope = new SearchScope(objectStore);
-            SearchSQL searchSQL = new SearchSQL("SELECT LinkArchType,LinkArchStatus,Id FROM LinkArchive WHERE AnnotatedObject = {FECFE222-2165-4264-A24A-BF3DE2790F1E}");
+            SearchSQL searchSQL = new SearchSQL("SELECT LinkArchType,LinkArchStatus,Id FROM LinkArchive WHERE AnnotatedObject = {FECFE222-2165-4264-A24A-BF3DE2790F1E}"
+                    + " AND LOWER(LinkArchType) = 'ручное'" +
+                    "AND LOWER(LinkArchStatus) = 'отменено'");
             IndependentObjectSet objectSet = searchScope.fetchObjects(searchSQL, 1000, null, false);
             Iterator iterator = objectSet.iterator();
             while (iterator.hasNext()) {
