@@ -6,6 +6,8 @@ import filenet.vw.api.VWWorkBasket;
 import filenet.vw.api.VWWorkObject;
 import org.junit.Test;
 
+import java.util.Arrays;
+
 /**
  * Created by rmugattarov on 01.02.2016.
  */
@@ -19,8 +21,9 @@ public class RetrieveWorkflow {
             vwSession.logon("cpe_bootstrap@tn.fntst.ru", "o9p0[-]=", "CP01");
             VWQueue docQueue = vwSession.getQueue("DocQueue");
             VWWorkBasket basket = docQueue.fetchWorkBasket("Связывание с Заголовком дела");
-            VWWorkBasket.QueryResults queryResults = basket.fetchFilteredBatch(0, 1, null, null, null, "F_Subject LIKE :F_Subject", new String[]{"%1200837289008%"}, null, 1);
-            System.out.println(queryResults);
+            int filteredCount = basket.fetchFilteredCount(0, null, null, null, "F_Subject LIKE :F_Subject", new String[]{"%1200837289008%"}, 1);
+            System.out.printf("filteredCount : %d\n", filteredCount);
+            VWWorkBasket.QueryResults queryResults = basket.fetchFilteredBatch(0, filteredCount, null, null, null, "F_Subject LIKE :F_Subject", new String[]{"%1200837289008%"}, null, 1);
             VWWorkObject[] workObjects = (VWWorkObject[]) queryResults.getWorkObjects();
             int i = 0;
             for (VWWorkObject workObject : workObjects) {
