@@ -28,9 +28,9 @@ public class SearchForLinkArchiveAnnotations {
                     + " AND LOWER(LinkArchType) = 'ручное'" +
                     "AND LOWER(LinkArchStatus) = 'отменено'");
             IndependentObjectSet objectSet = searchScope.fetchObjects(searchSQL, 1000, null, false);
-            Iterator iterator = objectSet.iterator();
+            Iterator<Annotation> iterator = (Iterator<Annotation>) objectSet.iterator();
             while (iterator.hasNext()) {
-                Annotation annotation = (Annotation) iterator.next();
+                Annotation annotation = iterator.next();
                 System.out.println(annotation.getProperties().getStringValue("LinkArchType"));
                 System.out.println(annotation.getProperties().getStringValue("LinkArchStatus"));
                 System.out.println(annotation.getProperties().getIdValue("Id").toString());
