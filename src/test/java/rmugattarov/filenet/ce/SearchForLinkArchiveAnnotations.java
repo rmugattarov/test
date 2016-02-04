@@ -2,6 +2,8 @@ package rmugattarov.filenet.ce;
 
 import com.filenet.api.collection.IndependentObjectSet;
 import com.filenet.api.core.*;
+import com.filenet.api.property.Properties;
+import com.filenet.api.property.Property;
 import com.filenet.api.query.SearchSQL;
 import com.filenet.api.query.SearchScope;
 import com.filenet.api.util.UserContext;
@@ -24,16 +26,20 @@ public class SearchForLinkArchiveAnnotations {
             Domain domain = Factory.Domain.fetchInstance(connection, null, null);
             ObjectStore objectStore = Factory.ObjectStore.fetchInstance(domain, "OST", null);
             SearchScope searchScope = new SearchScope(objectStore);
-            SearchSQL searchSQL = new SearchSQL("SELECT LinkArchType,LinkArchStatus,Id FROM LinkArchive WHERE AnnotatedObject = {FECFE222-2165-4264-A24A-BF3DE2790F1E}"
+            SearchSQL searchSQL = new SearchSQL("SELECT Id FROM LinkArchive WHERE AnnotatedObject = {FECFE222-2165-4264-A24A-BF3DE2790F1E}"
                     + " AND LOWER(LinkArchType) = 'ручное'" +
                     "AND LOWER(LinkArchStatus) = 'отменено'");
             IndependentObjectSet objectSet = searchScope.fetchObjects(searchSQL, 1000, null, false);
             Iterator<Annotation> iterator = (Iterator<Annotation>) objectSet.iterator();
             while (iterator.hasNext()) {
                 Annotation annotation = iterator.next();
-                System.out.println(annotation.getProperties().getStringValue("LinkArchType"));
-                System.out.println(annotation.getProperties().getStringValue("LinkArchStatus"));
-                System.out.println(annotation.getProperties().getIdValue("Id").toString());
+                Properties properties = annotation.getProperties();
+                Iterator<Property> propIt = properties.iterator();
+                int propCount = 0;
+                while (propIt.hasNext()) {
+                    Property property = propIt.next();
+                    System.out.println(++propCount + ") " + property.getPropertyName());
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
