@@ -35,7 +35,36 @@ public class TNFDEV_9247 {
         try (BOMInputStream inputStream = new BOMInputStream(new FileInputStream("D://KatStroy.XML"))) {
             JAXBContext jaxbContext = JAXBContext.newInstance(ConstructionObjectsImportFile.class);
             ConstructionObjectsImportFile constructionObjectsImportFile = (ConstructionObjectsImportFile) jaxbContext.createUnmarshaller().unmarshal(inputStream);
-            System.out.printf("constructionObjectsImportFile:\n%s", constructionObjectsImportFile);
+            List<ConstructionObjectsImportFile.ConstructionObject> constructionObjects = constructionObjectsImportFile.getConstructionObjects();
+            int maxCode = 0;
+            int maxName = 0;
+            int maxKod = 0;
+            int maxAbbr = 0;
+            int maxParentCode = 0;
+            for (ConstructionObjectsImportFile.ConstructionObject constructionObject : constructionObjects) {
+                List<ConstructionObjectsImportFile.ConstructionObjectField> constructionObjectFields = constructionObject.getConstructionObjectFields();
+                for (ConstructionObjectsImportFile.ConstructionObjectField constructionObjectFieldDto : constructionObjectFields) {
+                    ConstructionObjectField constructionObjectField = ConstructionObjectField.fromImportName(constructionObjectFieldDto.getName());
+                    switch (constructionObjectField) {
+                        case ABBREVIATION:
+                            maxAbbr = Math.max(maxAbbr,constructionObjectFieldDto.getValue().length());
+                            break;
+                        case CODE:
+                            maxCode = Math.max(maxCode,constructionObjectFieldDto.getValue().length());
+                            break;
+                        case KOD:
+                            maxKod = Math.max(maxKod,constructionObjectFieldDto.getValue().length());
+                            break;
+                        case NAME:
+                            maxName = Math.max(maxName,constructionObjectFieldDto.getValue().length());
+                            break;
+                        case PARENTCODE:
+                            maxParentCode = Math.max(maxParentCode,constructionObjectFieldDto.getValue().length());
+                            break;
+                    }
+                }
+            }
+            System.out.printf("\nmaxCode : %d\nmaxName : %d\nmaxKod: %d\nmaxAbbr: %d\nmaxParentCode: %d\n", maxCode, maxName, maxKod, maxAbbr, maxParentCode);
         }
     }
 
@@ -56,6 +85,10 @@ public class TNFDEV_9247 {
                     "} ";
         }
 
+        public List<ConstructionObject> getConstructionObjects() {
+            return constructionObjects;
+        }
+
         public static class ConstructionObject {
             private static final long serialVersionUID = 2773335779701858739L;
 
@@ -68,6 +101,10 @@ public class TNFDEV_9247 {
             @Override
             public String toString() {
                 return " ConstructionObject {constructionObjectFields : " + constructionObjectFields + "} ";
+            }
+
+            public List<ConstructionObjectField> getConstructionObjectFields() {
+                return constructionObjectFields;
             }
         }
 
@@ -88,6 +125,42 @@ public class TNFDEV_9247 {
                         "name : " + name + ", " +
                         "value : " + value +
                         "} ";
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public String getValue() {
+                return value;
+            }
+        }
+    }
+
+    enum ConstructionObjectField {
+        ABBREVIATION("AGENTABBR"), CODE("AGENTCODE"), KOD("AGENTKOD"), NAME("AGENTNAME"), PARENTCODE("PARENTAGENTCODE");
+        private String importName;
+
+        private ConstructionObjectField(String importName) {
+            this.importName = importName;
+        }
+
+        public String getImportName() {
+            return importName;
+        }
+
+        public static ConstructionObjectField fromImportName(String importName) {
+            ConstructionObjectField result = null;
+            for (ConstructionObjectField constructionObjectField : ConstructionObjectField.values()) {
+                if (constructionObjectField.getImportName().equalsIgnoreCase(importName)) {
+                    result = constructionObjectField;
+                    break;
+                }
+            }
+            if (result == null) {
+                throw new IllegalArgumentException("importName " + importName + " does not correspond to any enum value!");
+            } else {
+                return result;
             }
         }
     }
