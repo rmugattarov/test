@@ -12,24 +12,27 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlValue;
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.List;
-import java.util.regex.Pattern;
 
 /**
  * Created by rmugattarov on 05.02.2016.
  */
 public class TNFDEV_9247 {
-    public static final String RECORD_OPEN_TAG = "<RECORD>";
-    public static final String RECORD_CLOSE_TAG = "RECORD>";
-    public static final Pattern fieldPattern = Pattern.compile("<\\s*FIELD\\s+NAME=\\s*\"(\\w+)\"\\s*>(.*)<\\s*/\\s*FIELD\\s*>");
 
     @Test
-    public void test() throws IOException, JAXBException {
+    public void test_SMB() throws IOException, JAXBException {
         NtlmPasswordAuthentication auth = new NtlmPasswordAuthentication("tn.fntst.ru", "cpe_bootstrap@tn.fntst.ru", "o9p0[-]=");
-        try (InputStreamReader inputStream = new InputStreamReader(new BOMInputStream(new BufferedInputStream(new SmbFileInputStream(new SmbFile("smb://172.28.24.185/tstxml/KatStroy.XML", auth)))), "UTF-8")) {
+        try (BOMInputStream inputStream = new BOMInputStream(new BufferedInputStream(new SmbFileInputStream(new SmbFile("smb://172.28.24.185/tstxml/KatStroy.XML", auth))))) {
+            JAXBContext jaxbContext = JAXBContext.newInstance(ConstructionObjectsImportFile.class);
+            ConstructionObjectsImportFile constructionObjectsImportFile = (ConstructionObjectsImportFile) jaxbContext.createUnmarshaller().unmarshal(inputStream);
+            System.out.printf("constructionObjectsImportFile:\n%s", constructionObjectsImportFile);
+        }
+    }
+
+    @Test
+    public void test_local() throws JAXBException, IOException {
+        try (BOMInputStream inputStream = new BOMInputStream(new FileInputStream("D://KatStroy.XML"))) {
             JAXBContext jaxbContext = JAXBContext.newInstance(ConstructionObjectsImportFile.class);
             ConstructionObjectsImportFile constructionObjectsImportFile = (ConstructionObjectsImportFile) jaxbContext.createUnmarshaller().unmarshal(inputStream);
             System.out.printf("constructionObjectsImportFile:\n%s", constructionObjectsImportFile);
