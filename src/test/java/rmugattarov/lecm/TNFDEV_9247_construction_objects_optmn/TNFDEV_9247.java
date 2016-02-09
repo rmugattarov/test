@@ -1,5 +1,6 @@
 package rmugattarov.lecm.TNFDEV_9247_construction_objects_optmn;
 
+import com.google.common.base.Strings;
 import jcifs.smb.NtlmPasswordAuthentication;
 import jcifs.smb.SmbFile;
 import jcifs.smb.SmbFileInputStream;
@@ -37,6 +38,7 @@ public class TNFDEV_9247 {
             ConstructionObjectsImportFile constructionObjectsImportFile = (ConstructionObjectsImportFile) jaxbContext.createUnmarshaller().unmarshal(inputStream);
             List<ConstructionObjectsImportFile.ConstructionObject> constructionObjects = constructionObjectsImportFile.getConstructionObjects();
             int maxCode = 0;
+            int nullCodes = 0;
             int maxName = 0;
             int maxKod = 0;
             int maxAbbr = 0;
@@ -45,26 +47,28 @@ public class TNFDEV_9247 {
                 List<ConstructionObjectsImportFile.ConstructionObjectField> constructionObjectFields = constructionObject.getConstructionObjectFields();
                 for (ConstructionObjectsImportFile.ConstructionObjectField constructionObjectFieldDto : constructionObjectFields) {
                     ConstructionObjectField constructionObjectField = ConstructionObjectField.fromImportName(constructionObjectFieldDto.getName());
+                    String value = constructionObjectFieldDto.getValue();
                     switch (constructionObjectField) {
                         case ABBREVIATION:
-                            maxAbbr = Math.max(maxAbbr,constructionObjectFieldDto.getValue().length());
+                            maxAbbr = Math.max(maxAbbr, value.length());
                             break;
                         case CODE:
-                            maxCode = Math.max(maxCode,constructionObjectFieldDto.getValue().length());
+                            maxCode = Math.max(maxCode, value.length());
+                            nullCodes = Strings.isNullOrEmpty(value) ? nullCodes + 1 : nullCodes;
                             break;
                         case KOD:
-                            maxKod = Math.max(maxKod,constructionObjectFieldDto.getValue().length());
+                            maxKod = Math.max(maxKod, value.length());
                             break;
                         case NAME:
-                            maxName = Math.max(maxName,constructionObjectFieldDto.getValue().length());
+                            maxName = Math.max(maxName, value.length());
                             break;
                         case PARENTCODE:
-                            maxParentCode = Math.max(maxParentCode,constructionObjectFieldDto.getValue().length());
+                            maxParentCode = Math.max(maxParentCode, value.length());
                             break;
                     }
                 }
             }
-            System.out.printf("\nmaxCode : %d\nmaxName : %d\nmaxKod: %d\nmaxAbbr: %d\nmaxParentCode: %d\n", maxCode, maxName, maxKod, maxAbbr, maxParentCode);
+            System.out.printf("\nmaxCode : %d\nnullCodes : %d\nmaxName : %d\nmaxKod: %d\nmaxAbbr: %d\nmaxParentCode: %d\n", maxCode, nullCodes, maxName, maxKod, maxAbbr, maxParentCode);
         }
     }
 
