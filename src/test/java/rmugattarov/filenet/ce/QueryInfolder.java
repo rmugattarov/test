@@ -27,7 +27,7 @@ public class QueryInfolder {
             Folder folder = Factory.Folder.fetchInstance(objectStore, "/Справочники/Объекты строительства", null);
             System.out.println(folder.get_Id());
             SearchScope searchScope = new SearchScope(objectStore);
-            SearchSQL searchSQL = new SearchSQL("select id from katstroy with excludesubclasses where iscurrentversion=true and this infolder '/Справочники/Объекты строительства' and iscatalogelementactive is not null");
+            SearchSQL searchSQL = new SearchSQL("select id from katstroy with excludesubclasses where iscurrentversion=true and this infolder '/Справочники/Объекты строительства'");
             System.out.println(new Date());
             IndependentObjectSet objectSet = searchScope.fetchObjects(searchSQL, null, null, true);
             Iterator iterator = objectSet.iterator();
