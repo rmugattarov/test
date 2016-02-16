@@ -24,15 +24,15 @@ public class QueryWorkLogRecordAnnotations {
             Domain domain = Factory.Domain.fetchInstance(connection, null, null);
             ObjectStore objectStore = Factory.ObjectStore.fetchInstance(domain, "OST", null);
             SearchScope searchScope = new SearchScope(objectStore);
-            SearchSQL searchSQL = new SearchSQL("select id from worklogrecord where " +
-                    "(StepName = 'Автоматическое связывание' AND Response <> 'Успешно') OR " +
-                    "(StepName = 'Ручное связывание' AND Response IS NULL)");
+            SearchSQL searchSQL = new SearchSQL("select AnnotatedObject from worklogrecord where annotatedobject={B4766756-D48A-4AAF-BEF7-B0B0FAE7B93E} AND " +
+                    "((StepName = 'Автоматическое связывание' AND Response <> 'Успешно') OR " +
+                    "(StepName = 'Ручное связывание' AND Response IS NULL))");
             AnnotationSet annotations = (AnnotationSet) searchScope.fetchObjects(searchSQL, null, null, true);
             Iterator<Annotation> iterator = annotations.iterator();
             int counter = 0;
             while (iterator.hasNext()) {
                 Annotation annotation = iterator.next();
-                System.out.printf("%d) %s\n", ++counter, annotation);
+                System.out.printf("%d) %s\n", ++counter, annotation.get_AnnotatedObject().getProperties().getIdValue("Id").toString());
             }
         } catch (Exception e) {
             e.printStackTrace();
