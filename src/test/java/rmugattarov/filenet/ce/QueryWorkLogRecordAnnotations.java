@@ -1,6 +1,6 @@
 package rmugattarov.filenet.ce;
 
-import com.filenet.api.collection.IndependentObjectSet;
+import com.filenet.api.collection.AnnotationSet;
 import com.filenet.api.core.*;
 import com.filenet.api.query.SearchSQL;
 import com.filenet.api.query.SearchScope;
@@ -9,7 +9,6 @@ import org.junit.Test;
 import rmugattarov.filenet.ce.util.Connection_172_28_24_184;
 
 import javax.security.auth.Subject;
-import java.util.Date;
 import java.util.Iterator;
 
 /**
@@ -25,10 +24,16 @@ public class QueryWorkLogRecordAnnotations {
             Domain domain = Factory.Domain.fetchInstance(connection, null, null);
             ObjectStore objectStore = Factory.ObjectStore.fetchInstance(domain, "OST", null);
             SearchScope searchScope = new SearchScope(objectStore);
-            SearchSQL searchSQL = new SearchSQL("select annotatedobject from worklogrecord where annotatedobject={37224497-31FC-470C-8E68-7A970F7111E0}");
-            IndependentObjectSet objectSet = searchScope.fetchObjects(searchSQL, null, null, true);
-            Annotation annotation = (Annotation) objectSet.iterator().next();
-            System.out.printf("%s", annotation.get_AnnotatedObject().getProperties().getIdValue("Id").toString());
+            SearchSQL searchSQL = new SearchSQL("select id from worklogrecord where " +
+                    "(StepName = 'Автоматическое связывание' AND Response <> 'Успешно') OR " +
+                    "(StepName = 'Ручное связывание' AND Response IS NULL)");
+            AnnotationSet annotations = (AnnotationSet) searchScope.fetchObjects(searchSQL, null, null, true);
+            Iterator<Annotation> iterator = annotations.iterator();
+            int counter = 0;
+            while (iterator.hasNext()) {
+                Annotation annotation = iterator.next();
+                System.out.printf("%d) %s\n", ++counter, annotation);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
