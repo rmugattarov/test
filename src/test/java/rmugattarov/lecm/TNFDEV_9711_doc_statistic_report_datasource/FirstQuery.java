@@ -4,9 +4,7 @@ import com.filenet.api.util.Id;
 import org.junit.Test;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * Created by rmugattarov on 19.02.2016.
@@ -27,22 +25,26 @@ public class FirstQuery {
         List<Id> ids = new ArrayList<>();
         try {
             connection = DriverManager.getConnection("jdbc:" + dbms + "://" + host + ":" + port + "/" + db, connProperties);
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(
-                    "SELECT DISTINCT c.OBJECT_ID " +
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT DISTINCT d.OBJECT_ID,c.U5218_IDPACK " +
                             "FROM DOCVERSION d " +
-                            "INNER JOIN RELATIONSHIP r ON r.HEAD_ID = d.OBJECT_ID " +
-                            "INNER JOIN CONTAINER c ON c.OBJECT_ID = r.TAIL_ID " +
+                            "INNER JOIN CONTAINER c ON c.U5218_IDPACK = d.UE018_IDPACK " +
                             "WHERE " +
                             "(d.IS_CURRENT = 1) " +
-                            "AND (d.U11E3_DOCDATE > (CURRENT date - 14 days) AND d.U11E3_DOCDATE < CURRENT date) " +
-                            "AND (c.UB8A8_FOLDERSTATUS = 'Введен' OR (c.UB233_PACKSTATECHANGEDATE > (CURRENT date - 14 days) AND c.UB233_PACKSTATECHANGEDATE < CURRENT date))");
+                            "AND (d.U11E3_DOCDATE > ? AND d.U11E3_DOCDATE < ?) " +
+                            "AND (c.UB8A8_FOLDERSTATUS = 'Введен' OR (c.UB233_PACKSTATECHANGEDATE > ? AND c.UB233_PACKSTATECHANGEDATE < ?))");
+            preparedStatement.setTimestamp(1, new Timestamp(new java.util.Date().getTime() - 14 * 24 * 60 * 60 * 1000), Calendar.getInstance(TimeZone.getTimeZone("UTC+0")));
+            preparedStatement.setTimestamp(2, new Timestamp(new java.util.Date().getTime()), Calendar.getInstance(TimeZone.getTimeZone("UTC")));
+            preparedStatement.setTimestamp(3, new Timestamp(new java.util.Date().getTime() - 14 * 24 * 60 * 60 * 1000), Calendar.getInstance(TimeZone.getTimeZone("UTC")));
+            preparedStatement.setTimestamp(4, new Timestamp(new java.util.Date().getTime()), Calendar.getInstance(TimeZone.getTimeZone("UTC")));
 
+            ResultSet resultSet = preparedStatement.executeQuery();
             int count = 0;
             while (resultSet.next()) {
                 Id id = new Id(resultSet.getBytes("OBJECT_ID"));
+                String idPack = resultSet.getString("U5218_IDPACK");
                 ids.add(id);
-                System.out.printf("%d) %s\n", ++count, id);
+                System.out.printf("%d) %s\t%s\n", ++count, id, idPack);
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
