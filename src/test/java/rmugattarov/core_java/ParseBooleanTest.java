@@ -9,5 +9,6 @@ public class ParseBooleanTest {
     @Test
     public void test_parse_boolean() {
         System.out.printf("Boolean.parseBoolean(null) : %b\n", Boolean.parseBoolean(null));
+        System.out.printf("Boolean.parseBoolean(\"trUe\") : %b\n", Boolean.parseBoolean("trUe"));
     }
 }
