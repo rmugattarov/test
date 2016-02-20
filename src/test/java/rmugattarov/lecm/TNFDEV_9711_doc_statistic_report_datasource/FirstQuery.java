@@ -31,8 +31,8 @@ public class FirstQuery {
                             "INNER JOIN CONTAINER c ON c.U5218_IDPACK = d.UE018_IDPACK " +
                             "WHERE " +
                             "(d.IS_CURRENT = 1) " +
-                            "AND (d.U11E3_DOCDATE > ? AND d.U11E3_DOCDATE < ?) " +
-                            "AND (c.UB8A8_FOLDERSTATUS = 'Введен' OR (c.UB233_PACKSTATECHANGEDATE > ? AND c.UB233_PACKSTATECHANGEDATE < ?))");
+                            "AND (d.U11E3_DOCDATE >= ? AND d.U11E3_DOCDATE <= ?) " +
+                            "AND (c.UB8A8_FOLDERSTATUS = 'Введен' OR (c.UB233_PACKSTATECHANGEDATE >= ? AND c.UB233_PACKSTATECHANGEDATE <= ?))");
             preparedStatement.setTimestamp(1, new Timestamp(new java.util.Date().getTime() - 14 * 24 * 60 * 60 * 1000), Calendar.getInstance(TimeZone.getTimeZone("UTC+0")));
             preparedStatement.setTimestamp(2, new Timestamp(new java.util.Date().getTime()), Calendar.getInstance(TimeZone.getTimeZone("UTC")));
             preparedStatement.setTimestamp(3, new Timestamp(new java.util.Date().getTime() - 14 * 24 * 60 * 60 * 1000), Calendar.getInstance(TimeZone.getTimeZone("UTC")));
