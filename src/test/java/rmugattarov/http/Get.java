@@ -13,10 +13,10 @@ import java.net.URL;
 public class Get {
     @Test
     public void test() throws IOException {
-        URL url = new URL("http", "en.wikipedia.org", "/");
+        URL url = new URL("http", "www.google.com", "/");
         HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
         httpURLConnection.setRequestMethod("GET");
         System.out.printf("Response code : %d\n", httpURLConnection.getResponseCode());
-        System.out.printf("Response :\n%s\n", IOUtils.toString(httpURLConnection.getInputStream()));
+        System.out.printf("Response :\n%s\n", IOUtils.toString(httpURLConnection.getInputStream()), "UTF-8");
     }
 }
