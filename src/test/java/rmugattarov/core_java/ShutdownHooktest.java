@@ -5,7 +5,7 @@ import org.junit.Test;
 /**
  * Created by rmugattarov on 18.01.2016.
  */
-public class ShutdownHookTest {
+public class ShutdownHooktest {
     @Test
     public void test_shutdown_hook() {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
