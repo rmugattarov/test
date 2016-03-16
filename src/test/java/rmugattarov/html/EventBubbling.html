@@ -11,11 +11,21 @@
     }
 </style>
 <body>
-<div onclick="console.log('Div 1')">
-    <div onclick="console.log('Div 2')">
-        <div onclick="console.log('Div 3')">
+<div onclick="console.log('div 1')">
+    <div onclick="console.log('div 2')">
+        <div onclick="console.log('div 3')">
             Inner most div
         </div>
+    </div>
+</div>
+<div onFocusOut="console.log('div 4')">
+    <div onFocusOut="console.log('div 5')">
+        <textarea onFocusOut="console.log('textarea')"></textarea>
+    </div>
+</div>
+<div onblur="console.log('div 6')">
+    <div onblur="console.log('div 7')">
+        <textarea onblur="console.log('textarea')"></textarea>
     </div>
 </div>
 </body>
