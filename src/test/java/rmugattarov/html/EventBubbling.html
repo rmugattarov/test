@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EventBubbling</title>
+</head>
+<style>
+    div {
+        padding: 50px;
+        border: black solid;
+    }
+</style>
+<body>
+<div onclick="console.log('Div 1')">
+    <div onclick="console.log('Div 2')">
+        <div onclick="console.log('Div 3')">
+            Inner most div
+        </div>
+    </div>
+</div>
+</body>
+</html>
