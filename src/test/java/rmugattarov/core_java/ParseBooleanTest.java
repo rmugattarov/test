@@ -11,5 +11,6 @@ public class ParseBooleanTest {
         System.out.printf("Boolean.parseBoolean(null) : %b\n", Boolean.parseBoolean(null));
         System.out.printf("Boolean.parseBoolean(\"trUe\") : %b\n", Boolean.parseBoolean("trUe"));
         System.out.printf("Boolean.parseBoolean(\"\") : %b\n", Boolean.parseBoolean(""));
+        System.out.printf("Boolean.valueOf(null) : %b\n", Boolean.valueOf(null));
     }
 }
