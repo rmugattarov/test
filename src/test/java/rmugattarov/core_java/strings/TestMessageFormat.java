@@ -10,6 +10,7 @@ import java.text.MessageFormat;
 public class TestMessageFormat {
     @Test
     public void test() {
-        System.out.println(MessageFormat.format("asd''asd''asd", "123"));
+        System.out.println(MessageFormat.format("asd''{0}''asd", "123"));
+        System.out.println(String.format("q'%s's", 123));
     }
 }
