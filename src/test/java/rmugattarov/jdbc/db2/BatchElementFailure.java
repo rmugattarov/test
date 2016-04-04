@@ -1,9 +1,11 @@
 package rmugattarov.jdbc.db2;
 
-import com.ibm.db2.jcc.am.SqlIntegrityConstraintViolationException;
 import org.junit.Test;
 
-import java.sql.*;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Random;
