@@ -11,7 +11,7 @@ import java.util.List;
  */
 @XmlRootElement(name = "TABLE")
 public class KatStroyXml {
-    public final static String PATH = "C:\\Users\\rmugattarov\\Desktop\\KatStroy.xml";
+    public final static String PATH = "C:\\Users\\rmugattarov\\Desktop\\KatStroyTest.xml";
 
     @XmlElement(name = "RECORD")
     private List<Record> records;
