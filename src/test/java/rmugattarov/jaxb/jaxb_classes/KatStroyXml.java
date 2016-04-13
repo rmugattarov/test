@@ -38,7 +38,7 @@ public class KatStroyXml {
 
             @Override
             public String toString() {
-                return " Field {name : " + name + ", value : " + value + "} ";
+                return " Field {name : " + name + ",\nvalue : " + value + "\n} ";
             }
 
             public String getName() {
