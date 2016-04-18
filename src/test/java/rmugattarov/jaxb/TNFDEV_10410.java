@@ -17,7 +17,8 @@ public class TNFDEV_10410 {
 //        KatStroyXml katStroyXml = (KatStroyXml) jaxbContext.createUnmarshaller().unmarshal(new FileReader(KatStroyXml.PATH));
 //        KatStroyXml katStroyXml = (KatStroyXml) jaxbContext.createUnmarshaller().unmarshal(new BufferedInputStream(new FileInputStream(KatStroyXml.PATH)));
 //        KatStroyXml katStroyXml = (KatStroyXml) jaxbContext.createUnmarshaller().unmarshal(new InputStreamReader(new FileInputStream(new File(KatStroyXml.PATH))));
-        KatStroyXml katStroyXml = (KatStroyXml) jaxbContext.createUnmarshaller().unmarshal(new FileInputStream(KatStroyXml.PATH));
+//        KatStroyXml katStroyXml = (KatStroyXml) jaxbContext.createUnmarshaller().unmarshal(new FileInputStream(KatStroyXml.PATH));
+        KatStroyXml katStroyXml = (KatStroyXml) jaxbContext.createUnmarshaller().unmarshal(new BufferedInputStream(new FileInputStream(KatStroyXml.PATH)));
 
         System.out.println(katStroyXml);
     }
