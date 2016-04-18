@@ -9,6 +9,7 @@ public class EndId {
     @Test
     public void test() {
         String s = "aslkfh2089374{4C1C3DD3-A789-437D-BF15-1D07ADE712F9}";
-        System.out.println(s.matches(".*\\{\\}$"));
+        System.out.println(s.matches(".*\\{([0-9A-Z]{8}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{12})\\}$"));
+//                                      .*\\{([0-9A-Z]{8}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{4}-[0-9A-Z]{12})\\}$
     }
 }
