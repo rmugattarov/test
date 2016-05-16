@@ -8,8 +8,9 @@ import org.junit.Test;
 public class BooleanCondition {
     @Test
     public void test() {
-        int y = 0;
-        int x = 0;
-        boolean result = (y == 0) & (x == 0);
+        Boolean b = null;
+        if (b) {
+            System.out.println(true);
+        }
     }
 }
