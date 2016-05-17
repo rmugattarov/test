@@ -9,7 +9,8 @@ public class TestSupressed {
     @Test
     public void test() {
         try {
-            throw new RuntimeException("One");
+//            throw new RuntimeException("One");
+            throw new OutOfMemoryError("Three");
         } finally {
             System.out.println("finally");
             throw new RuntimeException("Two");
