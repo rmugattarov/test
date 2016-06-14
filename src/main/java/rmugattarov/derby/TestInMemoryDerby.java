@@ -12,9 +12,10 @@ public class TestInMemoryDerby {
         Statement statement = connection.createStatement();
         statement.executeUpdate("CREATE TABLE TEST_TABLE (ID BIGINT GENERATED ALWAYS AS IDENTITY, TEXT VARCHAR(32))");
         statement.executeUpdate("INSERT INTO TEST_TABLE (TEXT) VALUES ('hello')");
+        statement.executeUpdate("INSERT INTO TEST_TABLE (TEXT) VALUES ('world')");
         ResultSet resultSet = statement.executeQuery("SELECT * FROM TEST_TABLE");
         while (resultSet.next()) {
-            System.out.println(resultSet.getString(2));
+            System.out.println(resultSet.getString(1) + " | " + resultSet.getString(2));
         }
     }
 }
