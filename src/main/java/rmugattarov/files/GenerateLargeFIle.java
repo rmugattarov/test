@@ -24,7 +24,8 @@ public class GenerateLargeFile {
         StringBuilder result = new StringBuilder("INSTRUMENT");
         Integer instrumentNumber = rand.nextInt(10) + 1;
         result.append(instrumentNumber).append(",");
-        Integer date = rand.nextInt(27) + 1;
+        int randomDate = rand.nextInt(27) + 1;
+        String date = randomDate < 10 ? "0" + randomDate : randomDate + "";
         result.append(date).append("-");
         String month = months[rand.nextInt(12)];
         result.append(month).append("-");
