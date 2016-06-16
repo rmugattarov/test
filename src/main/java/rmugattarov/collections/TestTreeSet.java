@@ -12,6 +12,8 @@ public class TestTreeSet {
         set.add("Y");
         set.add("X");
         set.add("A");
+        set.add("A");
+        set.add("A");
         set.add("B");
         set.add("C");
         System.out.println(set);
