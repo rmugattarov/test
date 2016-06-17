@@ -13,8 +13,8 @@ public class GenerateLargeFile {
     private static final String[] months = new String[]{"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
 
     public static void main(String[] args) throws IOException {
-        try (PrintWriter writer = new PrintWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream("D:\\test-large-file.txt"))))) {
-            for (int i = 0; i < 300000000; i++) {
+        try (PrintWriter writer = new PrintWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream("D:\\test-medium-file.txt"))))) {
+            for (int i = 0; i < 10000000; i++) {
                 writer.println(generateFileLine());
             }
         }
