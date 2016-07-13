@@ -11,6 +11,8 @@ import java.util.TimeZone;
  */
 public class W3CFormat {
     public static void main(String[] args) {
-        System.out.println(new LocalDateTime(new Date(), DateTimeZone.UTC).toDate(TimeZone.getTimeZone("UTC")));
+        LocalDateTime localDateTime = new LocalDateTime(new Date(), DateTimeZone.UTC);
+        System.out.println(localDateTime);
+        System.out.println(localDateTime.toString("yyyy-MM-dd'T'HH:mm:ss.SSS"));
     }
 }
