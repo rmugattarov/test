@@ -12,10 +12,10 @@ public class DeadlockTest {
                 e.printStackTrace();
             }
         });
-
-        System.out.println("starting t");
+        String threadName = Thread.currentThread().getName();
+        System.out.printf("%s starting t\r\n", threadName);
         t.start();
-        System.out.println("joining with t");
+        System.out.printf("%s joining with t\r\n", threadName);
         t.join();
     }
 }
