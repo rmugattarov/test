@@ -15,8 +15,8 @@ public class LinkedVsArray {
         for (long i = 0; i < 10000000L; i++) {
             arrayList.add(i);
         }
-        for (Long integer : arrayList) {
-
+        for (Long number : arrayList) {
+            number += number;
         }
         Date date2 = new Date();
         System.out.printf("ArrayList : %d ms\r\n", (date2.getTime() - date1.getTime()));
@@ -26,8 +26,8 @@ public class LinkedVsArray {
         for (long i = 0; i < 10000000L; i++) {
             linkedList.add(i);
         }
-        for (Long integer : linkedList) {
-
+        for (Long number : linkedList) {
+            number += number;
         }
         Date date4 = new Date();
         System.out.printf("LinkedList : %d ms\r\n", (date4.getTime() - date3.getTime()));
