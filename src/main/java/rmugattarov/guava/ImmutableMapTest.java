@@ -1,4 +1,4 @@
-package rmugattarov.guave;
+package rmugattarov.guava;
 
 import com.google.common.collect.ImmutableMap;
 
