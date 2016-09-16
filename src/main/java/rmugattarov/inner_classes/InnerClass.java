@@ -5,6 +5,7 @@ package rmugattarov.inner_classes;
  */
 public class InnerClass {
     private String s = "123";
+    private Inner inner = this.new Inner();
 
     private class Inner {
         @Override
@@ -13,7 +14,12 @@ public class InnerClass {
         }
     }
 
+    @Override
+    public String toString() {
+        return " InnerClass {inner : " + inner + "} ";
+    }
+
     public static void main(String[] args) {
-        System.out.println(new InnerClass().new Inner());
+        System.out.println(new InnerClass());
     }
 }
