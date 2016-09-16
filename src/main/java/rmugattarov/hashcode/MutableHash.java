@@ -1,6 +1,9 @@
 package rmugattarov.hashcode;
 
+import org.apache.commons.collections4.map.HashedMap;
+
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -15,6 +18,7 @@ public class MutableHash {
 
     public void setS(String s) {
         this.s = s;
+        System.out.println("s set to : " + s);
     }
 
     @Override
@@ -45,11 +49,20 @@ public class MutableHash {
         Set<MutableHash> set = new HashSet<>();
         MutableHash o1 = new MutableHash();
         set.add(o1);
-        System.out.println("size : " + set.size());
+        System.out.println("set size : " + set.size());
         set.add(o1);
-        System.out.println("size : " + set.size());
+        System.out.println("set size : " + set.size());
         o1.setS("123");
         set.add(o1);
-        System.out.println("size : " + set.size());
+        System.out.println("set size : " + set.size());
+        Map<MutableHash, String> map = new HashedMap<>();
+        map.put(o1, "123");
+        System.out.println("map size : " + map.size());
+        map.put(o1, "123");
+        System.out.println("map size : " + map.size());
+        o1.setS("qwe");
+        map.put(o1, "234");
+        System.out.println("map size : " + map.size());
+        System.out.println("get by key : " + map.get(o1));
     }
 }
