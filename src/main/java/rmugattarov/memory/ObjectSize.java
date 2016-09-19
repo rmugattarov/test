@@ -16,10 +16,10 @@ public class ObjectSize {
         System.out.printf("Empty ArrayList : %d\r\n", ObjectSizeCalculator.getObjectSize(arrayList));
         System.out.printf("Empty LinkedList : %d\r\n", ObjectSizeCalculator.getObjectSize(linkedList));
 
-        int elementCount = 3_000_000;
+        int elementCount = 10_000_000;
         for (int i = 0; i < elementCount; i++) {
-            arrayList.add(null);
-            linkedList.add(null);
+            arrayList.add(new String());
+            linkedList.add(new String());
         }
 
         System.out.printf("ArrayList : %d KB per element\r\n", ObjectSizeCalculator.getObjectSize(arrayList) / elementCount);
