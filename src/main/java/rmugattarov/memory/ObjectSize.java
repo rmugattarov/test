@@ -18,8 +18,8 @@ public class ObjectSize {
 
         int elementCount = 10_000_000;
         for (int i = 0; i < elementCount; i++) {
-            arrayList.add(new String());
-            linkedList.add(new String());
+            arrayList.add(null);
+            linkedList.add(null);
         }
 
         System.out.printf("ArrayList : %d KB per element\r\n", ObjectSizeCalculator.getObjectSize(arrayList) / elementCount);
