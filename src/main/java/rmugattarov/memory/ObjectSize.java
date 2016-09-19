@@ -22,7 +22,7 @@ public class ObjectSize {
             linkedList.add(null);
         }
 
-        System.out.printf("1M ArrayList : %d KB per element\r\n", ObjectSizeCalculator.getObjectSize(arrayList) / elementCount);
-        System.out.printf("1M LinkedList : %d KB per element\r\n", ObjectSizeCalculator.getObjectSize(linkedList) / elementCount);
+        System.out.printf("ArrayList : %d KB per element\r\n", ObjectSizeCalculator.getObjectSize(arrayList) / elementCount);
+        System.out.printf("LinkedList : %d KB per element\r\n", ObjectSizeCalculator.getObjectSize(linkedList) / elementCount);
     }
 }
