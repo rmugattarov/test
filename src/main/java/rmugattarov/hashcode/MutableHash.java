@@ -58,6 +58,7 @@ public class MutableHash {
             System.out.printf("set element %d : %s\r\n", ++i, mutableHash.getS());
         }
         Iterator<MutableHash> iterator = set.iterator();
+        i= 0;
         while (iterator.hasNext()) {
             MutableHash next = iterator.next();
             System.out.printf("set element %d : %s\r\n", ++i, next.getS());
