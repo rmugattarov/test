@@ -55,14 +55,9 @@ public class MutableHash {
         o1.setS("123");
         set.add(o1);
         System.out.println("set size : " + set.size());
-        Map<MutableHash, String> map = new HashedMap<>();
-        map.put(o1, "123");
-        System.out.println("map size : " + map.size());
-        map.put(o1, "123");
-        System.out.println("map size : " + map.size());
-        o1.setS("qwe");
-        map.put(o1, "234");
-        System.out.println("map size : " + map.size());
-        System.out.println("get by key : " + map.get(o1));
+        int i = 0;
+        for (MutableHash mutableHash : set) {
+            System.out.printf("set element %d : %s\r\n", ++i, mutableHash.getS());
+        }
     }
 }
