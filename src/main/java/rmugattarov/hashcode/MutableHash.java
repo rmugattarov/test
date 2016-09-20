@@ -22,7 +22,7 @@ public class MutableHash {
     @Override
     public int hashCode() {
         int hash = s == null ? 1 : s.hashCode();
-        System.out.printf("hashCode called. value : %s\r\n", hash);
+        System.out.printf("hashCode called. value : %d\r\n", hash);
         return hash;
     }
 
@@ -47,12 +47,12 @@ public class MutableHash {
         Set<MutableHash> set = new HashSet<>();
         MutableHash o1 = new MutableHash();
         set.add(o1);
-        System.out.println("set size : " + set.size());
+        System.out.printf("set size : %d\r\n", set.size());
         set.add(o1);
-        System.out.println("set size : " + set.size());
+        System.out.printf("set size : %d\r\n", set.size());
         o1.setS("123");
         set.add(o1);
-        System.out.println("set size : " + set.size());
+        System.out.printf("set size : %d\r\n", set.size());
         int i = 0;
         for (MutableHash mutableHash : set) {
             System.out.printf("set element %d : %s\r\n", ++i, mutableHash.getS());
