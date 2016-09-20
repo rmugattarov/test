@@ -1,6 +1,7 @@
 package rmugattarov.hashcode;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -55,6 +56,11 @@ public class MutableHash {
         int i = 0;
         for (MutableHash mutableHash : set) {
             System.out.printf("set element %d : %s\r\n", ++i, mutableHash.getS());
+        }
+        Iterator<MutableHash> iterator = set.iterator();
+        while (iterator.hasNext()) {
+            MutableHash next = iterator.next();
+            System.out.printf("set element %d : %s\r\n", ++i, next.getS());
         }
     }
 }
