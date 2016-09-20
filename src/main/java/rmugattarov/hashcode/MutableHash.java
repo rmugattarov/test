@@ -16,13 +16,13 @@ public class MutableHash {
 
     public void setS(String s) {
         this.s = s;
-        System.out.println("s set to : " + s);
+        System.out.printf("s set to : %s\r\n", s);
     }
 
     @Override
     public int hashCode() {
         int hash = s == null ? 1 : s.hashCode();
-        System.out.println("hashCode called. value : " + hash);
+        System.out.printf("hashCode called. value : %s\r\n", hash);
         return hash;
     }
 
@@ -39,7 +39,7 @@ public class MutableHash {
             MutableHash that = (MutableHash) o;
             result = this.s.equals(that.s);
         }
-        System.out.println("equals called. result " + result);
+        System.out.printf("equals called. result : %s\r\n", result);
         return result;
     }
 
