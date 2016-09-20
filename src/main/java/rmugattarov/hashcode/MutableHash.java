@@ -1,9 +1,6 @@
 package rmugattarov.hashcode;
 
-import org.apache.commons.collections4.map.HashedMap;
-
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 /**
