@@ -8,7 +8,7 @@ import java.util.LinkedList;
 /**
  * Created by rmugattarov on 19.09.2016.
  */
-public class ObjectSize {
+public class ArrayLvsLinkedL {
     public static void main(String[] args) {
         ArrayList<String> arrayList = new ArrayList<>();
         LinkedList<String> linkedList = new LinkedList<>();
