@@ -4,7 +4,7 @@ package rmugattarov.enums;
  * Created by rmugattarov on 04.10.2016.
  */
 public class NestedEnum {
-    MyNestedEnum enumField;
+    private MyNestedEnum enumField;
 
     public enum MyNestedEnum {
         A, B
