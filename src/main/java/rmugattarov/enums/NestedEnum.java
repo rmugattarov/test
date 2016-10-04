@@ -5,7 +5,7 @@ package rmugattarov.enums;
  */
 public class NestedEnum {
     public enum MyNestedEnum {
-        A, B;
+        A, B
     }
 
     public static void main(String[] args) {
