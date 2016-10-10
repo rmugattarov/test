@@ -8,12 +8,20 @@ import java.lang.reflect.Field;
 public class SetField {
     private String s = "Bazinga!";
 
+    @Override
+    public String toString() {
+        return " SetField { s : " + s + "} ";
+    }
+
     public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
-        SetField setField = new SetField();
+        SetField o1 = new SetField();
+        SetField o2 = new SetField();
         Field declaredField = SetField.class.getDeclaredField("s");
         declaredField.setAccessible(true);
-        System.out.println(declaredField.get(setField));
-        declaredField.set(setField, null);
-        System.out.println(declaredField.get(setField));
+        System.out.println(declaredField.get(o1));
+        declaredField.set(o1, null);
+        declaredField.set(o2, null);
+        System.out.println(o1 + " "  + o1.hashCode());
+        System.out.println(o2 + " "  + o2.hashCode());
     }
 }
