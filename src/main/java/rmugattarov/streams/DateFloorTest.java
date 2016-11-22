@@ -10,6 +10,7 @@ public class DateFloorTest {
     public static void main(String[] args) {
         List<String> list = Arrays.asList("aaa", "bbb", "ccc");
         System.out.println(floor(list, "a"));
+
     }
 
     public static String floor(List<String> events, String ceiling) {
