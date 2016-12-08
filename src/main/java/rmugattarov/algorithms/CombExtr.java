@@ -16,7 +16,7 @@ public class CombExtr {
         Collection<List<Integer>> permutations = Collections2.permutations(list);
         permutations.forEach(System.out::println);
         System.out.println("=== === === ===");
-        PermutationIterator permutationIterator = new PermutationIterator(list);
+        PermutationIterator<Integer> permutationIterator = new PermutationIterator<>(list);
         while (permutationIterator.hasNext()) {
             System.out.println(permutationIterator.next());
         }
