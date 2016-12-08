@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by rmugattarov on 08.12.2016.
  */
-public class CombExtr {
+public class Permutations {
     public static void main(String[] args) {
         List<Integer> list = Arrays.asList(1, 2, 3);
         Collection<List<Integer>> permutations = Collections2.permutations(list);
