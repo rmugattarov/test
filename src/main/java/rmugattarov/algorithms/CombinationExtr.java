@@ -11,7 +11,7 @@ public class CombinationExtr {
         int[] idx = new int[]{0, 1, 2};
         System.out.println(Arrays.toString(idx));
         int last = idx.length - 1;
-        while (idx[0] < len - idx.length) {
+        while (idx[0] <= len - idx.length) {
             idx[last] = idx[last] + 1;
             if (idx[last] > len) {
                 raise(idx, last - 1, len);
