@@ -1,46 +1,24 @@
 package rmugattarov.algorithms;
 
+import com.google.common.collect.Collections2;
+import org.apache.commons.collections4.iterators.PermutationIterator;
+
 import java.util.Arrays;
-import java.util.Iterator;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * Created by rmugattarov on 08.12.2016.
  */
-public class CombExtr implements Iterator<Object[]> {
-
-    private final Object[] data;
-    private final int[] idx;
-
-    public CombExtr(Object[] data, int len) {
-        this.data = data;
-        if (len > data.length) {
-            len = data.length;
-        }
-        idx = new int[len];
-        for (int i = 0; i < idx.length; i++) {
-            idx[i] = i;
-        }
-    }
-
-    @Override
-    public boolean hasNext() {
-        return idx[0] != data.length - idx.length;
-    }
-
-    @Override
-    public Object[] next() {
-        Object[] result = new Object[idx.length];
-        for (int i = 0; i < idx.length; i++) {
-            result[i] = data[idx[i]];
-        }
-        return result;
-    }
-
-
+public class CombExtr {
     public static void main(String[] args) {
-        CombExtr extr = new CombExtr(new Integer[]{1, 2, 3}, 2);
-        if (extr.hasNext()) {
-            System.out.println(Arrays.toString(extr.next()));
+        List<Integer> list = Arrays.asList(1, 2, 3);
+        Collection<List<Integer>> permutations = Collections2.permutations(list);
+        permutations.forEach(System.out::println);
+        System.out.println("=== === === ===");
+        PermutationIterator permutationIterator = new PermutationIterator(list);
+        while (permutationIterator.hasNext()) {
+            System.out.println(permutationIterator.next());
         }
     }
 }
