@@ -9,22 +9,22 @@ public class CombinationExtr {
     public static void main(String[] args) {
         int len = 5;
         int[] idx = new int[]{0, 1, 2};
-        System.out.println(Arrays.toString(idx));
+        System.out.printf("initial : %s\r\n", Arrays.toString(idx));
         int last = idx.length - 1;
         while (idx[0] <= len - idx.length) {
             idx[last] = idx[last] + 1;
             if (idx[last] > len) {
                 raise(idx, last - 1, len);
-                System.out.println(Arrays.toString(idx));
+                System.out.printf("raised : %s\r\n", Arrays.toString(idx));
             } else {
-                System.out.println(Arrays.toString(idx));
+                System.out.printf("grown : %s\r\n", Arrays.toString(idx));
             }
         }
     }
 
     private static void raise(int[] idx, int i, int len) {
         idx[i] = idx[i] + 1;
-        if (idx[i] > len) {
+        if (idx[i] + i > len) {
             raise(idx, i - 1, len);
         } else {
             for (int j = i + 1; j < idx.length; j++) {
