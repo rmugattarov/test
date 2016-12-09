@@ -14,6 +14,11 @@ public class CombinationExtr implements Iterator<Object[]> {
 
     public CombinationExtr(Object[] data, int len) {
         this.data = data;
+        if (len > data.length) {
+            len = data.length;
+        } else if (len < 1) {
+            len = 1;
+        }
         idx = new int[len];
         for (int i = 0; i < idx.length; i++) {
             idx[i] = i;
