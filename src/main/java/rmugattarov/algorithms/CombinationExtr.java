@@ -23,16 +23,20 @@ public class CombinationExtr implements Iterator<Object[]> {
     }
 
     public static void main(String[] args) {
-        CombinationExtr extr = new CombinationExtr(new Integer[]{1, 2, 3, 4, 5}, 2);
+        CombinationExtr extr = new CombinationExtr(new Integer[]{1, 2, 3, 4, 5}, 3);
         while (extr.hasNext()) {
             System.out.println(Arrays.toString(extr.next()));
         }
     }
 
-    private void raise(int[] idx, int i) {
+    private void raise(int i) {
         idx[i] = idx[i] + 1;
-        if (idx[i] + i >= data.length) {
-            raise(idx, i - 1);
+        boolean tooBig = idx[i] > data.length - idx.length + i;
+        if (i == 0 && tooBig) {
+            hasNext = false;
+            return;
+        } else if (tooBig) {
+            raise(i - 1);
         } else {
             for (int j = i + 1; j < idx.length; j++) {
                 idx[j] = idx[j - 1] + 1;
@@ -47,18 +51,8 @@ public class CombinationExtr implements Iterator<Object[]> {
 
     @Override
     public Object[] next() {
-        Object[] result;
-        if (idx[lastIdx] >= data.length) {
-            raise(idx, lastIdx - 1);
-            result = collect(idx);
-        } else {
-            result = collect(idx);
-        }
-        if (idx[0] == data.length - idx.length) {
-            hasNext = false;
-        } else {
-            idx[lastIdx] = idx[lastIdx] + 1;
-        }
+        Object[] result = collect(idx);
+        raise(lastIdx);
         return result;
     }
 
