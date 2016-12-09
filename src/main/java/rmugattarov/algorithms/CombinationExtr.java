@@ -1,21 +1,23 @@
 package rmugattarov.algorithms;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by rmugattarov on 08.12.2016.
  */
-public class CombinationExtr implements Iterator<Object[]> {
+public class CombinationExtr<T> implements Iterator<List<T>> {
 
-    private final Object[] data;
+    private final List<T> data;
     private final int[] idx;
     private boolean hasNext = true;
 
-    public CombinationExtr(Object[] data, int len) {
+    public CombinationExtr(List<T> data, int len) {
         this.data = data;
-        if (len > data.length) {
-            len = data.length;
+        if (len > data.size()) {
+            len = data.size();
         } else if (len < 1) {
             len = 1;
         }
@@ -26,15 +28,15 @@ public class CombinationExtr implements Iterator<Object[]> {
     }
 
     public static void main(String[] args) {
-        CombinationExtr extr = new CombinationExtr(new Integer[]{1, 2, 3, 4, 5}, 3);
+        CombinationExtr extr = new CombinationExtr(Arrays.asList(1, 2, 3, 4, 5), 3);
         while (extr.hasNext()) {
-            System.out.println(Arrays.toString(extr.next()));
+            System.out.println(extr.next());
         }
     }
 
     private void raise(int i) {
         idx[i] = idx[i] + 1;
-        boolean tooBig = idx[i] > data.length - idx.length + i;
+        boolean tooBig = idx[i] > data.size() - idx.length + i;
         if (i == 0 && tooBig) {
             hasNext = false;
             return;
@@ -53,16 +55,16 @@ public class CombinationExtr implements Iterator<Object[]> {
     }
 
     @Override
-    public Object[] next() {
-        Object[] result = collect(idx);
+    public List<T> next() {
+        List<T> result = collect(idx);
         raise(idx.length - 1);
         return result;
     }
 
-    private Object[] collect(int[] idx) {
-        Object[] result = new Object[idx.length];
-        for (int i = 0; i < idx.length; i++) {
-            result[i] = data[idx[i]];
+    private List<T> collect(int[] idx) {
+        List<T> result = new ArrayList<>(idx.length);
+        for (int i : idx) {
+            result.add(data.get(i));
         }
         return result;
     }
