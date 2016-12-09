@@ -10,7 +10,6 @@ public class CombinationExtr implements Iterator<Object[]> {
 
     private final Object[] data;
     private final int[] idx;
-    private final int lastIdx;
     private boolean hasNext = true;
 
     public CombinationExtr(Object[] data, int len) {
@@ -19,7 +18,6 @@ public class CombinationExtr implements Iterator<Object[]> {
         for (int i = 0; i < idx.length; i++) {
             idx[i] = i;
         }
-        lastIdx = idx.length - 1;
     }
 
     public static void main(String[] args) {
@@ -52,7 +50,7 @@ public class CombinationExtr implements Iterator<Object[]> {
     @Override
     public Object[] next() {
         Object[] result = collect(idx);
-        raise(lastIdx);
+        raise(idx.length - 1);
         return result;
     }
 
