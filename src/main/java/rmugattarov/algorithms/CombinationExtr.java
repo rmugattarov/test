@@ -11,6 +11,7 @@ public class CombinationExtr implements Iterator<Object[]> {
     private final Object[] data;
     private final int[] idx;
     private final int lastIdx;
+    private boolean hasNext = true;
 
     public CombinationExtr(Object[] data, int len) {
         this.data = data;
@@ -22,7 +23,7 @@ public class CombinationExtr implements Iterator<Object[]> {
     }
 
     public static void main(String[] args) {
-        CombinationExtr extr = new CombinationExtr(new Integer[]{1, 2, 3, 4, 5}, 3);
+        CombinationExtr extr = new CombinationExtr(new Integer[]{1, 2, 3, 4, 5}, 2);
         while (extr.hasNext()) {
             System.out.println(Arrays.toString(extr.next()));
         }
@@ -41,7 +42,7 @@ public class CombinationExtr implements Iterator<Object[]> {
 
     @Override
     public boolean hasNext() {
-        return idx[0] < data.length - idx.length;
+        return hasNext;
     }
 
     @Override
@@ -53,7 +54,11 @@ public class CombinationExtr implements Iterator<Object[]> {
         } else {
             result = collect(idx);
         }
-        idx[lastIdx] = idx[lastIdx] + 1;
+        if (idx[0] == data.length - idx.length) {
+            hasNext = false;
+        } else {
+            idx[lastIdx] = idx[lastIdx] + 1;
+        }
         return result;
     }
 
