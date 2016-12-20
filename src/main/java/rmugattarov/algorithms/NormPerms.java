@@ -29,7 +29,7 @@ public class NormPerms {
                 }
             }
         }
-        int offset = (len + idx.length - idx[idx.length - 1]) / 2;
+        int offset = (len + idx.length - 1 - idx[idx.length - 1]) / 2;
         for (int i = 0; i < idx.length; i++) {
             idx[i] = idx[i] + offset;
         }
