@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * Created by rmugattarov on 11.01.2017.
  */
-public class A_2_2 {
+public class A_2_2_InsertionSort {
     public static void main(String[] args) {
         int[] ints = {3, 4, 2, 5, 1};
         System.out.printf("ints : %s\r\n", Arrays.toString(ints));
