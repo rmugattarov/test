@@ -25,7 +25,6 @@ public class A_2_2 {
             System.out.printf("ints : %s\r\n", Arrays.toString(ints));
         }
 
-
         System.out.printf("Outer loop : %d\r\n", outerLoop);
         System.out.printf("Inner loop : %d\r\n", innerLoop);
         System.out.printf("ints : %s\r\n", Arrays.toString(ints));
