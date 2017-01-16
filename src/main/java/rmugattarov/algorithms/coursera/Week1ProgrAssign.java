@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class Week1ProgrAssign {
     public static void main(String[] args) {
-        char[] left = "1234".toCharArray();
+        char[] left = "456879".toCharArray();
         char[] right = "1234".toCharArray();
         List<String> lineProducts = new ArrayList<>();
 
