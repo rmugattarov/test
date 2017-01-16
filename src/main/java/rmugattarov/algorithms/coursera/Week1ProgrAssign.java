@@ -9,8 +9,10 @@ import java.util.List;
  */
 public class Week1ProgrAssign {
     public static void main(String[] args) {
-        char[] left = "456879".toCharArray();
-        char[] right = "1234".toCharArray();
+        String leftNumber = "3141592653589793238462643383279502884197169399375105820974944592";
+        String rightNumber = "2718281828459045235360287471352662497757247093699959574966967627";
+        char[] left = leftNumber.toCharArray();
+        char[] right = rightNumber.toCharArray();
         List<String> lineProducts = new ArrayList<>();
 
 
@@ -30,14 +32,15 @@ public class Week1ProgrAssign {
                     carry = 0;
                 }
                 System.out.println("carry : " + carry);
-                lineProduct = (product % 10) + lineProduct;
+                lineProduct = (j == 0 ? product : product % 10) + lineProduct;
             }
             lineProducts.add(lineProduct);
         }
         BigInteger result = BigInteger.ZERO;
         System.out.println(lineProducts);
+        System.out.println(lineProducts.size());
         for (int i = 0; i < lineProducts.size(); i++) {
-            BigInteger lineProduct = BigInteger.valueOf(Long.parseLong(lineProducts.get(i)));
+            BigInteger lineProduct = new BigInteger(lineProducts.get(i));
             BigInteger paddingFactor = BigInteger.ONE;
             for (int j = 1; j <= i; j++) {
                 paddingFactor = paddingFactor.multiply(BigInteger.TEN);
@@ -45,6 +48,9 @@ public class Week1ProgrAssign {
             lineProduct = lineProduct.multiply(paddingFactor);
             result = result.add(lineProduct);
         }
-        System.out.printf("result : %s\r\n", result);
+        System.out.printf("%s\r\n", result);
+        BigInteger validation = new BigInteger(leftNumber).multiply(new BigInteger(rightNumber));
+        System.out.printf("%s\r\n", validation);
+        System.out.println(validation.equals(result));
     }
 }
