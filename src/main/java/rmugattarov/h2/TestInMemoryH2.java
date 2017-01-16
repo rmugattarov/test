@@ -18,5 +18,6 @@ public class TestInMemoryH2 {
         while (resultSet.next()) {
             System.out.println(resultSet.getString(1) + " | " + resultSet.getString(2));
         }
+
     }
 }
