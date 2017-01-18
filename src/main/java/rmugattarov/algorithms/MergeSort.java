@@ -9,16 +9,21 @@ import java.util.List;
  */
 public class MergeSort {
     public static void main(String[] args) {
-        System.out.println(merge(Arrays.asList(1, 4, 8), Arrays.asList(2, 3, 7, 9)));
+        System.out.println(sort(Arrays.asList(5, 4, 3, 2, 1)));
     }
 
-//    public static List<Comparable> sort(List<Comparable> list) {
-//
-//    }
+    public static List<Comparable> sort(List<Comparable> list) {
+        if (list.size() < 2) {
+            return list;
+        } else {
+            return merge(sort(list.subList(0, list.size() / 2)), sort(list.subList(list.size() / 2, list.size())));
+        }
+    }
 
     public static List<Comparable> merge(List<Comparable> leftList, List<Comparable> rightList) {
         int elementCount = leftList.size() + rightList.size();
         List<Comparable> result = new ArrayList<>(elementCount);
+
         int leftIndex = 0;
         int rightIndex = 0;
 
