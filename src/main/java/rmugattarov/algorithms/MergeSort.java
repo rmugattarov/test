@@ -8,11 +8,15 @@ import java.util.List;
  * Created by rmugattarov on 18.01.2017.
  */
 public class MergeSort {
+    public static long inversionCount = 0;
+
     public static void main(String[] args) {
-        System.out.println(sort(Arrays.asList(5, 4, 3, 2, 1)));
+        inversionCount = 0;
+        System.out.println(sort(Arrays.asList(1,2,3,5,4)));
+        System.out.println(inversionCount);
     }
 
-    public static List<Comparable> sort(List<Comparable> list) {
+    public static List<? extends Comparable> sort(List<? extends Comparable> list) {
         if (list.size() < 2) {
             return list;
         } else {
@@ -20,7 +24,7 @@ public class MergeSort {
         }
     }
 
-    public static List<Comparable> merge(List<Comparable> leftList, List<Comparable> rightList) {
+    public static List<? extends Comparable> merge(List<? extends Comparable> leftList, List<? extends Comparable> rightList) {
         int elementCount = leftList.size() + rightList.size();
         List<Comparable> result = new ArrayList<>(elementCount);
 
@@ -35,6 +39,7 @@ public class MergeSort {
             } else {
                 if (rightList.get(rightIndex).compareTo(leftList.get(leftIndex)) < 0) {
                     result.add(rightList.get(rightIndex++));
+                    inversionCount += leftList.size() - leftIndex;
                 } else {
                     result.add(leftList.get(leftIndex++));
                 }
