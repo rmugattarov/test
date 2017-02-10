@@ -20,7 +20,8 @@ public class EventBudTest {
     }
     public static void main(String[] args) {
         System.out.println("main thread : " + Thread.currentThread().getName());
-        Subscriber s = new Subscriber();
+        Subscriber s1 = new Subscriber();
+        Subscriber s2 = new Subscriber();
         BUS.post(new Object());
         System.out.println("main end");
     }
