@@ -6,7 +6,7 @@ import java.util.function.Consumer;
  * Created by rmugattarov on 06.06.2017.
  */
 public class FuncMutithreading {
-    public final Consumer<String> f = arg -> {
+    public static final Consumer<String> f = arg -> {
         String s = "";
         s += arg;
         try {
@@ -14,7 +14,7 @@ public class FuncMutithreading {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println(Thread.currentThread().getName() + " : " + arg + " : " + s + " : " + hashCode());
+        System.out.println(Thread.currentThread().getName() + " : " + arg + " : " + s);
     };
 
     private static class Task implements Runnable {
