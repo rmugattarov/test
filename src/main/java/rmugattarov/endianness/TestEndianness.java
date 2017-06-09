@@ -3,7 +3,7 @@ package rmugattarov.endianness;
 /**
  * Created by rmugattarov on 29.05.2017.
  */
-public class TestEndiannes {
+public class TestEndianness {
     public static void main(String[] args) {
         int x = 0xA1B2C3D4;
         System.out.println(x);
