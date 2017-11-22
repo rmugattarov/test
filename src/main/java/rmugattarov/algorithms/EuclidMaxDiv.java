@@ -3,6 +3,7 @@ package rmugattarov.algorithms;
 public class EuclidMaxDiv {
     public static void main(String[] args) {
         System.out.println(maxDiv(2166, 6099));
+        System.out.println(maxDiv(1769, 551));
     }
 
     private static int maxDiv(int m, int n) {
