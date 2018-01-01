@@ -5,10 +5,10 @@ import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class OverlappingMatch {
+public class LonnestZeroGap {
     public static void main(String[] args) {
         int intVal = new Random().nextInt();
-        String s = Integer.toString(intVal, 2);
+        String s = Integer.toString(72, 2);
         System.out.println(s);
         System.out.println("length : " + s.length());
         Pattern pattern = Pattern.compile("(1[0]+)");
