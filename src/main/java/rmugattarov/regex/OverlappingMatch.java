@@ -13,11 +13,13 @@ public class OverlappingMatch {
         System.out.println("length : " + s.length());
         Pattern pattern = Pattern.compile("(1[0]+)");
         Matcher matcher = pattern.matcher(s);
+        int result = 0;
         while (matcher.find()){
             MatchResult matchResult = matcher.toMatchResult();
-            System.out.println("group 1 : " + matchResult.group(1));
-            System.out.println("group 1 start : " + matchResult.start(1));
-            System.out.println("group 1 : end " + matchResult.end(1));
+            if (matchResult.end(1) != s.length()) {
+                result = Math.max(result, matchResult.group(1).length() - 1);
+            }
         }
+        System.out.println("Longest gap for " + s + " is " + result);
     }
 }
