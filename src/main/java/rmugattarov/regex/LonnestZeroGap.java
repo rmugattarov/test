@@ -8,17 +8,15 @@ import java.util.regex.Pattern;
 public class LonnestZeroGap {
     public static void main(String[] args) {
         int intVal = new Random().nextInt();
-        String s = Integer.toString(72, 2);
+        String s = Integer.toString(intVal, 2);
         System.out.println(s);
         System.out.println("length : " + s.length());
-        Pattern pattern = Pattern.compile("(1[0]+)");
+        Pattern pattern = Pattern.compile("(1[0]+)(?=1)");
         Matcher matcher = pattern.matcher(s);
         int result = 0;
-        while (matcher.find()){
+        while (matcher.find()) {
             MatchResult matchResult = matcher.toMatchResult();
-            if (matchResult.end(1) != s.length()) {
-                result = Math.max(result, matchResult.group(1).length() - 1);
-            }
+            result = Math.max(result, matchResult.group(1).length() - 1);
         }
         System.out.println("Longest gap for " + s + " is " + result);
     }
