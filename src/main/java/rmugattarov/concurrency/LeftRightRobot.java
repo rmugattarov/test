@@ -1,0 +1,38 @@
+package rmugattarov.concurrency;
+
+public class LeftRightRobot {
+    public static void main(String[] args) {
+        Object o = new Object();
+        Thread t1 = new Thread(() -> {
+            while (true) {
+                System.out.println("left");
+                synchronized (o) {
+                    o.notify();
+                }
+                wait(o);
+            }
+        });
+        Thread t2 = new Thread(() -> {
+            while (true) {
+                wait(o);
+                System.out.println("right");
+                synchronized (o) {
+                    o.notify();
+                }
+            }
+        });
+        t1.start();
+        t2.start();
+    }
+
+    private static void wait(Object o) {
+        synchronized (o) {
+            try {
+                Thread.sleep(1000);
+                o.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
