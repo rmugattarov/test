@@ -1,5 +1,6 @@
 package rmugattarov.concurrency;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
@@ -37,7 +38,7 @@ public class LeftRightRobotCyclicBarrier {
             while (true) {
                 waitForNewIteration();
                 waitForLeft();
-                System.out.println(s + " " + Thread.currentThread().getName());
+                System.out.println(s + " " + Thread.currentThread().getName() + " " + LocalDateTime.now());
                 sleepRandomTime();
                 notifyRight();
             }
@@ -66,9 +67,7 @@ public class LeftRightRobotCyclicBarrier {
         private void waitForNewIteration() {
             try {
                 b.await();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (BrokenBarrierException e) {
+            } catch (InterruptedException | BrokenBarrierException e) {
                 e.printStackTrace();
             }
         }
