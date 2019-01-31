@@ -21,14 +21,14 @@ public class LeftRightRobot {
                 }
             }
         });
-        t1.start();
         t2.start();
+        t1.start();
     }
 
     private static void wait(Object o) {
         synchronized (o) {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(500);
                 o.wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
