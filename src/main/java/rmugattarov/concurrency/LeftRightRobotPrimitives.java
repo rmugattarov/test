@@ -1,6 +1,6 @@
 package rmugattarov.concurrency;
 
-public class LeftRightRobot {
+public class LeftRightRobotPrimitives {
     public static void main(String[] args) {
         Object o = new Object();
         Thread t1 = new Thread(() -> {
