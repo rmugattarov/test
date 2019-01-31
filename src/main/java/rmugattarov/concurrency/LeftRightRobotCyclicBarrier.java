@@ -39,8 +39,8 @@ public class LeftRightRobotCyclicBarrier {
                 waitForNewIteration();
                 waitForLeft();
                 System.out.println(s + " " + Thread.currentThread().getName() + " " + LocalDateTime.now());
-                sleepRandomTime();
                 notifyRight();
+                sleepRandomTime();
             }
         }
 
