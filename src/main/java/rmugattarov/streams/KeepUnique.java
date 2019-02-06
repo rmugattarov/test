@@ -11,5 +11,8 @@ public class KeepUnique {
         Set<Integer> set = list.stream()
                 .collect(Collectors.toSet());
         System.out.println(set);
+        list.stream()
+                .distinct()
+                .forEach(System.out::println);
     }
 }
