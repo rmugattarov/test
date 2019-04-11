@@ -2,7 +2,7 @@ package rmugattarov.interview;
 
 public class WordFolding {
     public static void main(String[] args) {
-        fold("WALMART");
+        fold("MAGNIFICENT");
     }
 
     private static void fold(String s) {
