@@ -1,6 +1,6 @@
 package rmugattarov.search;
 
-import org.apache.commons.lang.ArrayUtils;
+import rmugattarov.arrays.ArrayUtil;
 import rmugattarov.random.RandomUtil;
 
 import java.util.Arrays;
@@ -12,7 +12,7 @@ public class IntersectPostingLists {
             int[] arr2 = RandomUtil.getRandomSortedUniqueElementsArray();
             System.out.println("1) " + Arrays.toString(arr1));
             System.out.println("2) " + Arrays.toString(arr2));
-            System.out.println(Arrays.toString(or(arr1, arr2)));
+            System.out.println(Arrays.toString(andNot(arr1, arr2)));
         }
     }
 
@@ -60,16 +60,10 @@ public class IntersectPostingLists {
         }
 
         if (leftPointer < leftPL.length) {
-            return appendRanges(res, leftPL, resPointer, leftPointer);
+            return ArrayUtil.appendRanges(res, 0, resPointer, leftPL, leftPointer, leftPL.length);
         }
 
         return Arrays.copyOfRange(res, 0, resPointer);
-    }
-
-    private static int[] appendRanges(int[] left, int[] right, int leftEnd, int rightStart) {
-        left = Arrays.copyOfRange(left, 0, leftEnd);
-        int[] remaining = Arrays.copyOfRange(right, rightStart, right.length);
-        return ArrayUtils.addAll(left, remaining);
     }
 
     public static int[] or(int[] leftPL, int[] rightPL) {
@@ -94,10 +88,10 @@ public class IntersectPostingLists {
             }
         }
         if (leftPointer < leftPL.length) {
-            return appendRanges(res, leftPL, resPointer, leftPointer);
+            return ArrayUtil.appendRanges(res, 0, resPointer, leftPL, leftPointer, leftPL.length);
         }
         if (rightPointer < rightPL.length) {
-            return appendRanges(res, rightPL, resPointer, rightPointer);
+            return ArrayUtil.appendRanges(res, 0, resPointer, rightPL, rightPointer, rightPL.length);
         }
 
         return Arrays.copyOfRange(res, 0, resPointer);
