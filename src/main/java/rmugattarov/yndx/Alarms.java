@@ -1,9 +1,9 @@
-package rmugattarov;
+package rmugattarov.yndx;
 
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
-class Solution {
+class Alarms {
     public static void main(String[] args) {
 //        Scanner scan = new Scanner(System.in);
         Scanner scan = new Scanner("5 7 12\n5 22 17 13 8");
@@ -36,7 +36,7 @@ class Solution {
 //        import java.util.PriorityQueue;
 //        import java.util.Scanner;
 //
-//class Solution {
+//class Alarms {
 //    public static void main(String[] args) {
 //        Scanner scan = new Scanner(System.in);
 //        int n = scan.nextInt();
