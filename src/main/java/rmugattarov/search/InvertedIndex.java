@@ -1,21 +1,29 @@
 package rmugattarov.search;
 
-import lombok.ToString;
-
+import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-@ToString
 public class InvertedIndex {
     private SortedMap<String, PostingList> dict = new TreeMap<>();
 
-    public void add(String term, PostingList pl) {
+    public void add(String term, int docId, int postingPosition) {
         PostingList postingList = dict.get(term);
         if (postingList == null) {
+            PostingList pl = new PostingList();
+            pl.add(docId, postingPosition);
             dict.put(term, pl);
         } else {
-            postingList.add(pl);
-            dict.put(term, postingList);
+            postingList.add(docId, postingPosition);
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry e: dict.entrySet()) {
+            sb.append(e.getKey()).append("\n").append(e.getValue());
+        }
+        return sb.toString();
     }
 }

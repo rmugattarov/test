@@ -4,6 +4,6 @@ import lombok.Value;
 
 @Value
 public class Document {
-    Integer id;
+    int id;
     String value;
 }

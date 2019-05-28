@@ -7,6 +7,7 @@ public class Parser {
         List<String> tokens = Tokenizer.tokenize(doc.getValue());
         for (int i = 0; i < tokens.size(); i++) {
             String token = tokens.get(i);
+            index.add(token, doc.getId(), i);
         }
     }
 }

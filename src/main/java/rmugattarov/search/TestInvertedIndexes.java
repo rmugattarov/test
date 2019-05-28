@@ -1,7 +1,5 @@
 package rmugattarov.search;
 
-import java.util.Scanner;
-
 public class TestInvertedIndexes {
     private static final String doc1 = "One morning, when Gregor Samsa woke from troubled dreams, he found himself transformed in his " +
             "bed into a horrible vermin. He lay on his armour-like back, and if he lifted his head a little he " +
@@ -15,14 +13,12 @@ public class TestInvertedIndexes {
             "an illustrated magazine and housed in a nice, gilded frame.";
 
     public static void main(String[] args) {
-        Scanner scan = new Scanner(doc1);
-        while(scan.hasNext()) {
-            System.out.println(Tokenizer.normalize(scan.next()));
-        }
+        InvertedIndex index = new InvertedIndex();
+        Parser.parse(index, new Document(1, doc1));
+        System.out.println(index);
+        Parser.parse(index, new Document(2, doc2));
+        System.out.println(index);
+        Parser.parse(index, new Document(3, doc3));
+        System.out.println(index);
     }
-
-//    public static InvertedIndex index1() {
-//
-//
-//    }
 }
