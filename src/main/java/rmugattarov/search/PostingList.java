@@ -1,11 +1,16 @@
 package rmugattarov.search;
 
+import lombok.Getter;
+
 import java.util.*;
 
 public class PostingList {
+    @Getter
+    private int frequency;
     private SortedMap<Integer, SortedSet<Integer>> docIdToPostingPositions = new TreeMap<>();
 
     public void add(Integer docId, int postingPosition) {
+        frequency++;
         SortedSet<Integer> postingPositions = this.docIdToPostingPositions.get(docId);
         if (postingPositions == null) {
             postingPositions = new TreeSet<>();

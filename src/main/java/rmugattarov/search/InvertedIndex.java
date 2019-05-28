@@ -21,8 +21,11 @@ public class InvertedIndex {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (Map.Entry e: dict.entrySet()) {
-            sb.append(e.getKey()).append("\n").append(e.getValue());
+        int i = 1;
+        for (Map.Entry<String, PostingList> e: dict.entrySet()) {
+            PostingList pl = e.getValue();
+            sb.append(i++).append(") ").append(e.getKey()).append(", ").append(pl.getFrequency())
+                    .append("\n").append(pl);
         }
         return sb.toString();
     }
