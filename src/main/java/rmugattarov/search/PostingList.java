@@ -4,8 +4,8 @@ import lombok.Getter;
 
 import java.util.*;
 
+@Getter
 public class PostingList {
-    @Getter
     private int frequency;
     private SortedMap<Integer, SortedSet<Integer>> docIdToPostingPositions = new TreeMap<>();
 

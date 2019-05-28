@@ -1,8 +1,6 @@
 package rmugattarov.search;
 
-import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.util.*;
 
 public class InvertedIndex {
     private SortedMap<String, PostingList> dict = new TreeMap<>();
@@ -28,5 +26,16 @@ public class InvertedIndex {
                     .append("\n").append(pl);
         }
         return sb.toString();
+    }
+
+    public List<PostingList> getPostingLists(List<String> terms) {
+        List<PostingList> result = new ArrayList<>();
+        for (String term: terms) {
+            PostingList pl = dict.get(term);
+            if (pl != null) {
+                result.add(pl);
+            }
+        }
+        return result;
     }
 }

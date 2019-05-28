@@ -17,6 +17,6 @@ public class TestInvertedIndexes {
         Parser.parse(index, new Document(1, doc1));
         Parser.parse(index, new Document(2, doc2));
         Parser.parse(index, new Document(3, doc3));
-        System.out.println(index);
+        Search.proximitySearch("and a", 4, index);
     }
 }
