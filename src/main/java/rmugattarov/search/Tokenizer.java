@@ -9,7 +9,10 @@ public final class Tokenizer {
         List<String> tokens = new ArrayList<>();
         Scanner scan = new Scanner(s);
         while (scan.hasNext()) {
-            tokens.add(normalize(scan.next()));
+            String norlmalized = normalize(scan.next());
+            if (norlmalized.length() > 0) {
+                tokens.add(norlmalized);
+            }
         }
         return tokens;
     }

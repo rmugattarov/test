@@ -15,9 +15,7 @@ public class TestInvertedIndexes {
     public static void main(String[] args) {
         InvertedIndex index = new InvertedIndex();
         Parser.parse(index, new Document(1, doc1));
-        System.out.println(index);
         Parser.parse(index, new Document(2, doc2));
-        System.out.println(index);
         Parser.parse(index, new Document(3, doc3));
         System.out.println(index);
     }
