@@ -6,8 +6,9 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class BinaryArrayOnes {
     private static final Random R = ThreadLocalRandom.current();
+
     public static void main(String[] args) {
-        for (int i=0;i<10;i++) {
+        for (int i = 0; i < 20; i++) {
             int[] arr = getRandomBinaryArray();
             System.out.println(Arrays.toString(arr));
             int longestSeq = getLongetOnesSeq(arr);
@@ -18,15 +19,15 @@ public class BinaryArrayOnes {
     private static int getLongetOnesSeq(int[] arr) {
         int longestOnes = 0;
         int currentOnes = 0;
-        for (int i: arr) {
-            if(i == 1) {
+        for (int i : arr) {
+            if (i == 1) {
                 currentOnes++;
-            } else if (currentOnes != 0) {
                 longestOnes = Math.max(longestOnes, currentOnes);
+            } else if (currentOnes != 0) {
                 currentOnes = 0;
             }
         }
-        longestOnes = Math.max(longestOnes, currentOnes);
+
         return longestOnes;
     }
 
