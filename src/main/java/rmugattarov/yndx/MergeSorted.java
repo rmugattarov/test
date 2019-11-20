@@ -1,44 +1,51 @@
 package rmugattarov.yndx;
 
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 
 public class MergeSorted {
     public static void main(String[] args) throws IOException {
-        byte[] nextBytes = new byte[8];
-        int k = nextInt(System.in, nextBytes);
-        byte[] res = new byte[0];
-        for (short i = 0; i < k; i++) {
-            int len = nextInt(System.in, nextBytes);
-            byte[] nextArr = new byte[len];
-            for (short j = 0; j < len; j++) {
-                nextArr[j] = nextByte(System.in, nextBytes);
+        String[] fileNames = {
+                "C:\\Users\\mugat\\IdeaProjects\\test\\merge_sorted_test_cases\\input_1.txt",
+                "C:\\Users\\mugat\\IdeaProjects\\test\\merge_sorted_test_cases\\input_2.txt",
+                "C:\\Users\\mugat\\IdeaProjects\\test\\merge_sorted_test_cases\\input_3.txt",
+                "C:\\Users\\mugat\\IdeaProjects\\test\\merge_sorted_test_cases\\input_4.txt",
+                "C:\\Users\\mugat\\IdeaProjects\\test\\merge_sorted_test_cases\\input_5.txt",
+                "C:\\Users\\mugat\\IdeaProjects\\test\\merge_sorted_test_cases\\input_6.txt"
+        };
+
+        for (String fileName : fileNames) {
+            try (BufferedInputStream in = new BufferedInputStream(new FileInputStream(fileName))) {
+                mergeAndPrint(in);
+                System.out.println();
             }
-            res = merge(res, nextArr);
         }
-        for (byte re : res) {
-            System.out.print(re);
-            System.out.print(' ');
-        }
+//        try(BufferedInputStream in = new BufferedInputStream(new FileInputStream("input.txt"))) {
+//            mergeAndPrint(in);
+//        }
     }
 
-    private static byte[] merge(byte[] a, byte[] b) {
-        byte[] res = new byte[a.length + b.length];
-        int ai = 0;
-        int bi = 0;
-        for (int i = 0; i < res.length; i++) {
-            if (ai == a.length) {
-                res[i] = b[bi++];
-            } else if (bi == b.length) {
-                res[i] = a[ai++];
-            } else if (a[ai] < b[bi]) {
-                res[i] = a[ai++];
-            } else {
-                res[i] = b[bi++];
+    private static void mergeAndPrint(InputStream in) throws IOException {
+        byte[] nextBytes = new byte[8];
+        int k = nextInt(in, nextBytes);
+        byte[] res = new byte[k * k * 10];
+        int resI = 0;
+        int totalLen = 0;
+        for (int i = 0; i < k; i++) {
+            int len = nextInt(in, nextBytes);
+            totalLen += len;
+            for (int j = 0; j < len; j++) {
+                res[resI++] = nextByte(in, nextBytes);
             }
         }
-        return res;
+        Arrays.sort(res);
+        for (int i = res.length - totalLen; i < res.length; i++) {
+            System.out.print(res[i]);
+            System.out.print(' ');
+        }
     }
 
     private static int nextInt(InputStream is, byte[] bytes) throws IOException {
