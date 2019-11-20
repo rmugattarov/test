@@ -8,23 +8,23 @@ public class MergeSorted {
     public static void main(String[] args) throws IOException {
         byte[] nextBytes = new byte[8];
         int k = nextInt(System.in, nextBytes);
-        int[] res = new int[0];
-        for (int i = 0; i < k; i++) {
+        byte[] res = new byte[0];
+        for (short i = 0; i < k; i++) {
             int len = nextInt(System.in, nextBytes);
-            int[] nextArr = new int[len];
-            for (int j = 0; j < len; j++) {
-                nextArr[j] = nextInt(System.in, nextBytes);
+            byte[] nextArr = new byte[len];
+            for (short j = 0; j < len; j++) {
+                nextArr[j] = nextByte(System.in, nextBytes);
             }
             res = merge(res, nextArr);
         }
-        for (int i = 0; i < res.length; i++) {
-            System.out.print(res[i]);
+        for (byte re : res) {
+            System.out.print(re);
             System.out.print(' ');
         }
     }
 
-    private static int[] merge(int[] a, int[] b) {
-        int[] res = new int[a.length + b.length];
+    private static byte[] merge(byte[] a, byte[] b) {
+        byte[] res = new byte[a.length + b.length];
         int ai = 0;
         int bi = 0;
         for (int i = 0; i < res.length; i++) {
@@ -53,6 +53,25 @@ public class MergeSorted {
         }
         int res = 0;
         int order = 1;
+        while (--i >= 0) {
+            res += (bytes[i] - 48) * order;
+            order *= 10;
+        }
+        return res;
+    }
+
+    private static byte nextByte(InputStream is, byte[] bytes) throws IOException {
+        Arrays.fill(bytes, (byte) 0);
+        byte b;
+        byte i = 0;
+        while (true) {
+            b = (byte) is.read();
+            if (i == 0 && (b < 48 || b > 57)) continue;
+            if (b < 48 || b > 57) break;
+            bytes[i++] = b;
+        }
+        byte res = 0;
+        byte order = 1;
         while (--i >= 0) {
             res += (bytes[i] - 48) * order;
             order *= 10;
