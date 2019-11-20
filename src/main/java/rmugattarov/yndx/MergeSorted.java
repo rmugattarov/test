@@ -14,37 +14,39 @@ public class MergeSorted {
                 "C:\\Users\\mugat\\IdeaProjects\\test\\merge_sorted_test_cases\\input_3.txt",
                 "C:\\Users\\mugat\\IdeaProjects\\test\\merge_sorted_test_cases\\input_4.txt",
                 "C:\\Users\\mugat\\IdeaProjects\\test\\merge_sorted_test_cases\\input_5.txt",
-                "C:\\Users\\mugat\\IdeaProjects\\test\\merge_sorted_test_cases\\input_6.txt"
+                "C:\\Users\\mugat\\IdeaProjects\\test\\merge_sorted_test_cases\\input_6.txt",
+                "C:\\Users\\mugat\\IdeaProjects\\test\\merge_sorted_test_cases\\input_7.txt"
         };
 
         for (String fileName : fileNames) {
             try (BufferedInputStream in = new BufferedInputStream(new FileInputStream(fileName))) {
-                mergeAndPrint(in);
+                getStatsAndPrint(in);
                 System.out.println();
             }
         }
 //        try(BufferedInputStream in = new BufferedInputStream(new FileInputStream("input.txt"))) {
-//            mergeAndPrint(in);
+//            getStatsAndPrint(in);
 //        }
+//        getStatsAndPrint(System.in);
     }
 
-    private static void mergeAndPrint(InputStream in) throws IOException {
+    private static void getStatsAndPrint(InputStream in) throws IOException {
         byte[] nextBytes = new byte[8];
         int k = nextInt(in, nextBytes);
-        byte[] res = new byte[k * k * 10];
-        int resI = 0;
-        int totalLen = 0;
+        short[] stats = new short[101];
         for (int i = 0; i < k; i++) {
             int len = nextInt(in, nextBytes);
-            totalLen += len;
             for (int j = 0; j < len; j++) {
-                res[resI++] = nextByte(in, nextBytes);
+                byte next = nextByte(in, nextBytes);
+                stats[next] = (short) (stats[next] + 1);
             }
         }
-        Arrays.sort(res);
-        for (int i = res.length - totalLen; i < res.length; i++) {
-            System.out.print(res[i]);
-            System.out.print(' ');
+        for (byte i = 0; i < stats.length; i++) {
+            int val = stats[i];
+            while (val-- > 0) {
+                System.out.print(i);
+                System.out.print(' ');
+            }
         }
     }
 
