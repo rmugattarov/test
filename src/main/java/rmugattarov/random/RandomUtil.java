@@ -23,4 +23,15 @@ public final class RandomUtil {
         }
         return res;
     }
+
+    public static int[] getRandomArray() {
+        int len = RandomUtils.nextInt(17);
+        if (len == 0) return new int[0];
+        int[] res = new int[len];
+        for (int i = 0; i < res.length; i++) {
+            res[i] = RandomUtils.nextInt(9) + 1;
+        }
+        return res;
+    }
+
 }
