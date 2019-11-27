@@ -1,5 +1,10 @@
 package rmugattarov.tree;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.LinkedList;
+import java.util.List;
+
 public class BinaryTree {
     Node root;
     int size;
@@ -10,15 +15,18 @@ public class BinaryTree {
         tree.add(2);
         tree.add(7);
         tree.add(9);
+        tree.add(11);
         System.out.println(tree);
         System.out.println(tree.contains(0));
         System.out.println(tree.contains(5));
         System.out.println(tree.contains(9));
         System.out.println(tree.contains(10));
         tree.visitInOrder();
+        tree.listLevels();
     }
 
     public void visitInOrder() {
+        System.out.println("Visiting in order");
         visitInOrder(root);
     }
 
@@ -29,6 +37,24 @@ public class BinaryTree {
             visitInOrder(n.right);
         }
 
+    }
+
+    public void listLevels() {
+        System.out.println("Listing levels");
+        List<Node> nextLevel = Arrays.asList(root);
+        while (!nextLevel.isEmpty()) {
+            System.out.println(nextLevel);
+            nextLevel = listNextLevel(nextLevel);
+        }
+    }
+
+    private List<Node> listNextLevel(Collection<Node> nodes) {
+        List<Node> res = new LinkedList<>();
+        for (Node n : nodes) {
+            if (n.left != null) res.add(n.left);
+            if (n.right != null) res.add(n.right);
+        }
+        return res;
     }
 
     public boolean contains(int i) {
