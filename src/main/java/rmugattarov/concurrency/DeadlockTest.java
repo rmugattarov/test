@@ -6,6 +6,7 @@ package rmugattarov.concurrency;
 public class DeadlockTest {
     public static synchronized void main(String[] args) throws InterruptedException {
         Thread t = new Thread(() -> {
+            System.out.printf("inside %s\r\n", Thread.currentThread().getName());
             try {
                 DeadlockTest.main(null);
             } catch (InterruptedException e) {
@@ -13,9 +14,9 @@ public class DeadlockTest {
             }
         });
         String threadName = Thread.currentThread().getName();
-        System.out.printf("%s starting t\r\n", threadName);
+        System.out.printf("%s starting %s\r\n", threadName, t.getName());
         t.start();
-        System.out.printf("%s joining with t\r\n", threadName);
+        System.out.printf("%s joining with %s\r\n", threadName, t.getName());
         t.join();
     }
 }

@@ -11,7 +11,7 @@ public class StringPermutations {
 
     public static void main(String[] args) {
         String s = RandomStringUtils.random(R.nextInt(6), "abc");
-        printStringPermutations(new AtomicInteger(),"", "abcdef");
+        printStringPermutations(new AtomicInteger(),"", s);
     }
 
     public static void printStringPermutations(AtomicInteger count, String pref, String post) {
