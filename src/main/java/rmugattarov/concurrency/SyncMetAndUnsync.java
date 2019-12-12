@@ -28,10 +28,11 @@ public class SyncMetAndUnsync {
     }
 
     public void un() {
-        System.out.println("un");
+        System.out.println("un " + Thread.currentThread().getName());
+        s();
     }
 
     public synchronized void s() {
-        System.out.println("s");
+        System.out.println("s " + Thread.currentThread().getName());
     }
 }
