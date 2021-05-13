@@ -52,14 +52,14 @@ public class InterestingTrip {
     }
 
     private static boolean isAccessible(City c1, City c2, int limit) {
-        int dist = Math.abs(c1.x - c2.x) + Math.abs(c1.y - c2.y);
+        long dist = Math.abs(c1.x - c2.x) + Math.abs(c1.y - c2.y);
         return dist <= limit;
     }
 
     private static class City {
         int number;
-        int x;
-        int y;
+        long x;
+        long y;
         public City(int number, int x, int y) {
             this.number = number;
             this.x = x;
