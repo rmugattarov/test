@@ -8,24 +8,29 @@ public class RobotSecretary {
 
     private static int sum = Integer.MAX_VALUE;
     public static void main(String[] args) throws IOException {
-        String input = Files.readAllLines(Paths.get("input.txt")).get(0);
+//        String input = Files.readAllLines(Paths.get("input.txt")).get(0);
 //        String input = "Hello World";
-//        String input = "APPLE II";
-        System.out.println(sum(0, input, 0, 0));
+        String input = "APPLE II";
+        System.out.println(sum(0, input, true, 0));
     }
 
-    private static int sum(int i, String input, int reg, int sum) {
+    private static int sum(int i, String input, boolean lowerReg, int sum) {
         if (sum >= RobotSecretary.sum) return sum;
         if (i == input.length()) {
             RobotSecretary.sum = sum;
             return sum;
         }
         char c = input.charAt(i);
-        if ((Character.isLowerCase(c) && reg == 0) || (Character.isUpperCase(c) && reg == 1) || c == ' ') {
-            return sum(i + 1, input, reg, sum + 1);
+        boolean lowercase = isLowercase(c);
+        if (c == ' ' || (lowercase && lowerReg) || (!lowercase && !lowerReg)) {
+            return sum(i + 1, input, lowerReg, sum + 1);
         } else {
-            return Math.min(sum(i + 1, input, reg, sum + 2), sum(i + 1, input, reg == 0 ? 1 : 0, sum + 3));
+            return Math.min(sum(i + 1, input, lowerReg, sum + 2), sum(i + 1, input, !lowerReg, sum + 3));
         }
+    }
+
+    private static boolean isLowercase(char c) {
+        return c >= 97 && c <= 122;
     }
 
 }
