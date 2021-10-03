@@ -10,8 +10,8 @@ public class RobotSecretary {
     private static int spaces = 0;
 
     public static void main(String[] args) throws IOException {
-        String input = Files.readAllLines(Paths.get("input.txt")).get(0);
-//        String input = "Hello World";
+//        String input = Files.readAllLines(Paths.get("input.txt")).get(0);
+        String input = "Hello World";
 //        String input = "APPLE II";
         input = removeSpaces(input);
         System.out.println(spaces + sum(0, input, true, 0));
